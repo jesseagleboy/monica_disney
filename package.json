@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && bun --bun astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -20,5 +20,8 @@
     "sass": "^1.77.5",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4"
   }
 }
