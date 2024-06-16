@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 interface Props {
 	title: string;
 }
@@ -7,45 +9,77 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+		<meta charset='UTF-8' />
+		<meta name='description' content='Astro description' />
+		<meta name='viewport' content='width=device-width; initial-scale=1; viewport-fit=cover' />
+		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+		<meta name='generator' content={Astro.generator} />
+		<link rel='sitemap' href='/sitemap-index.xml' />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
 	<body>
+		<header>
+			<p>Monica DeFosse</p>
+		</header>
+		<div class='background-image'></div>
 		<slot />
-	</body>
+	</body><style is:global>
+		:root {
+			--accent: 136, 58, 234;
+			--accent-light: 224, 204, 250;
+			--accent-dark: 49, 10, 101;
+			--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
+		}
+		html {
+			font-family: system-ui, sans-serif;
+			background: #13151a;
+			background-size: 224px;
+		}
+		html,
+		body {
+			height: 100%;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		header {
+			display: flex;
+			padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+			align-items: center;
+			background-color: white;
+			background-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+			position: sticky;
+			top: 0;
+			z-index: 999;
+		}
+
+		.background-image {
+			background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Spaceship_Earth_with_Mickey%27s_Wand.jpg/1600px-Spaceship_Earth_with_Mickey%27s_Wand.jpg");
+			background-size: cover;
+			background-repeat: repeat;
+			background-position: center;
+			filter: blur(10px);
+			height: 96dvh;
+			width: 100%;
+			position: absolute;
+			z-index: -1;
+		}
+
+		code {
+			font-family:
+				Menlo,
+				Monaco,
+				Lucida Console,
+				Liberation Mono,
+				DejaVu Sans Mono,
+				Bitstream Vera Sans Mono,
+				Courier New,
+				monospace;
+		}
+	</style>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
