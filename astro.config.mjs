@@ -7,7 +7,7 @@ import vercel from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'http://localhost:3000',
+  site: 'https://monica-disney.vercel.app/',
   integrations: [tailwind(), mdx(), sitemap()],
   output: "static",
   adapter: vercel()
