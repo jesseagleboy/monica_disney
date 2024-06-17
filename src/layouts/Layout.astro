@@ -30,6 +30,21 @@ const { title } = Astro.props;
 		<div class='screen-safe-area'>
 			<slot />
 		</div>
+		<footer>
+			<section class='footer-info'>
+				<section class='person-info'>
+					<p>Monica DeFosse&nbsp;-&nbsp;</p>
+					<a href='https://onceuponawishtravel.com' class="prose"><p>Agent of <i>Once Upon A Wish Travel</i></p></a>
+				</section>
+				<section class='contact'>
+					<a href='tel:5135152967' class="prose"><p>Phone: (513)-515-2967</p></a>
+					<a href='mailto:monica.defosse@onceuponawishtravel.com' class="prose"><p>Email: monica.defosse@onceuponawishtravel.com</p></a>
+				</section>
+				<section class='copyright'>
+					<p>© {new Date().getFullYear()}. All rights reserved.</p>
+				</section>
+			</section>
+		</footer>
 
 		<style is:global>
 			:root {
@@ -46,10 +61,6 @@ const { title } = Astro.props;
 				box-sizing: border-box;
 			}
 
-			.screen-safe-area {
-				padding: 1rem;
-			}
-
 			header {
 				display: flex;
 				padding: calc(env(safe-area-inset-top) + 1rem) 0.5rem;
@@ -63,16 +74,15 @@ const { title } = Astro.props;
 
 			.background-image {
 				background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Spaceship_Earth_with_Mickey%27s_Wand.jpg/1600px-Spaceship_Earth_with_Mickey%27s_Wand.jpg");
-				z-index: -10;
+				height: 500px;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index: -1;
 				position: absolute;
-				top: 0;
 				left: 0;
 				right: 0;
-				bottom: 0;
-
-				background-size: cover;
-				background-position: center;
-				filter: blur(10px) brightness(0.9);
+				filter: blur(10px) brightness(90%);
 			}
 
 			code {
@@ -87,9 +97,24 @@ const { title } = Astro.props;
 					monospace;
 			}
 		</style>
-		<style>
+		<style lang='scss'>
 			@view-transition {
 				navigation: auto; /* enabled! */
+			}
+
+			.screen-safe-area {
+				padding: 1rem;
+			}
+
+			footer{
+				border-top: 1px solid black;
+				background-color: lightblue;
+				padding-inline: 1rem;
+			}
+
+			.person-info {
+				display: flex;
+				// gap: 0.5rem;
 			}
 		</style>
 	</body>
