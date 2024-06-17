@@ -8,7 +8,11 @@ interface Props {
 	description?: string;
 }
 
-const defaultDescription = 'Once Upon A Wish Travel';
+import monicaImage from "@/images/monica.jpeg";
+
+console.log(monicaImage);
+
+const defaultDescription = "Once Upon A Wish Travel";
 
 const { title, description = defaultDescription } = Astro.props;
 ---
@@ -22,6 +26,24 @@ const { title, description = defaultDescription } = Astro.props;
 		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 		<meta name='generator' content={Astro.generator} />
 		<link rel='sitemap' href='/sitemap-index.xml' />
+
+		<!-- Facebook Meta Tags -->
+		<meta property='og:url' content='https://magicaladventuresbymonica.com/' />
+		<meta property='og:type' content='website' />
+		<meta property='og:title' content='Monica DeFosse - Once Upon A Wish Travel' />
+		<meta property='og:description' content='Monica DeFosse - Once Upon A Wish Travel' />
+		<meta property='og:image' content={monicaImage.src} />
+
+		<!-- Twitter Meta Tags -->
+		<meta name='twitter:card' content='summary_large_image' />
+		<meta property='twitter:domain' content='magicaladventuresbymonica.com' />
+		<meta property='twitter:url' content='https://magicaladventuresbymonica.com/' />
+		<meta name='twitter:title' content='Monica DeFosse - Once Upon A Wish Travel' />
+		<meta name='twitter:description' content='Monica DeFosse - Once Upon A Wish Travel' />
+		<meta name='twitter:image' content={monicaImage.src} />
+
+		<!-- Meta Tags Generated via https://www.opengraph.xyz -->
+
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
@@ -37,11 +59,11 @@ const { title, description = defaultDescription } = Astro.props;
 			<section class='footer-info'>
 				<section class='person-info'>
 					<p>Monica DeFosse&nbsp;-&nbsp;</p>
-					<a href='https://onceuponawishtravel.com' class="prose"><p>Agent of <i>Once Upon A Wish Travel</i></p></a>
+					<a href='https://onceuponawishtravel.com' class='prose'><p>Agent of <i>Once Upon A Wish Travel</i></p></a>
 				</section>
 				<section class='contact'>
-					<a href='tel:5135152967' class="prose"><p>Phone: (513)-515-2967</p></a>
-					<a href='mailto:monica.defosse@onceuponawishtravel.com' class="prose"><p>Email: monica.defosse@onceuponawishtravel.com</p></a>
+					<a href='tel:5135152967' class='prose'><p>Phone: (513)-515-2967</p></a>
+					<a href='mailto:monica.defosse@onceuponawishtravel.com' class='prose'><p>Email: monica.defosse@onceuponawishtravel.com</p></a>
 				</section>
 				<section class='copyright'>
 					<p>© {new Date().getFullYear()}. All rights reserved.</p>
@@ -109,7 +131,7 @@ const { title, description = defaultDescription } = Astro.props;
 				padding: 1rem;
 			}
 
-			footer{
+			footer {
 				border-top: 1px solid black;
 				background-color: lightblue;
 				padding-inline: 1rem;
