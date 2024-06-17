@@ -21,7 +21,7 @@ const Content = (await introList?.render()).Content;
 				<article class='prose md:prose-lg lg:prose-xl'>
 					<Content />
 				</article>
-				<a role='button' id='lets-go-button' href='https://www.onceuponawishtravel.com/monica-defosse?fbclid=IwZXh0bgNhZW0CMTEAAR1ni540p2iP6cKKQEpH9C1YbEZ3Y85XzHMWNy8TIHpJqG4AYLeSf4Ahyk0_aem_AQuQ1NTwg7A5BLtF8ltfcNDQcJiufX3cinjOdkbi0V3VZN3u5AbDer1vg7_uxauyFeqF3x1t4tYAM7nBhqd62bAE'>Let's Go!</a>
+				<a role='button' id='lets-go-button' class='prose' href='https://www.onceuponawishtravel.com/monica-defosse?fbclid=IwZXh0bgNhZW0CMTEAAR1ni540p2iP6cKKQEpH9C1YbEZ3Y85XzHMWNy8TIHpJqG4AYLeSf4Ahyk0_aem_AQuQ1NTwg7A5BLtF8ltfcNDQcJiufX3cinjOdkbi0V3VZN3u5AbDer1vg7_uxauyFeqF3x1t4tYAM7nBhqd62bAE'>Start the Fireworks!</a>
 			</section>
 		</section>
 	</main>
@@ -60,6 +60,9 @@ const Content = (await introList?.render()).Content;
 		padding: 1rem;
 		border-radius: 1rem;
 		box-shadow: 0 0 0.5rem rgb(255, 255, 255);
+	}
+
+	article {
 		transition: all 0.2s ease-in-out;
 	}
 
@@ -69,8 +72,8 @@ const Content = (await introList?.render()).Content;
 		border-radius: 1rem;
 		padding: 0.5rem;
 		transition: all 0.2s ease-in-out;
-		background-color: lightblue;
 		font-weight: bold;
+		color: red;
 	}
 
 	#lets-go-button:hover {
@@ -78,6 +81,28 @@ const Content = (await introList?.render()).Content;
 		transform: scale(1.1);
 		border: 3px green solid;
 		color: white;
+		background-image: linear-gradient(45deg, red, orange, yellow, green, blue);
+		background-size: 500px;
+		background-position: right;
+		animation-name: background-rainbow;
+		animation-duration: 5s;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+		animation-direction: alternate;
+	}
+
+	@keyframes background-rainbow {
+		0% {
+			background-position: right;
+		}
+		50% {
+			background-position: top;
+			background-size: 300px;
+		}
+		100% {
+			background-position: bottom;
+			background-size: 500px;
+		}
 	}
 </style>
 
@@ -85,6 +110,25 @@ const Content = (await introList?.render()).Content;
 	import confetti from "canvas-confetti";
 	const button = document.querySelector("#lets-go-button");
 	button?.addEventListener("mouseenter", async () => {
-		await confetti();
+		var duration = 7 * 1000;
+		var animationEnd = Date.now() + duration;
+		var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+		function randomInRange(min: number, max: number) {
+			return Math.random() * (max - min) + min;
+		}
+
+		var interval: Timer = setInterval(function () {
+			var timeLeft = animationEnd - Date.now();
+
+			if (timeLeft <= 0) {
+				return clearInterval(interval);
+			}
+
+			var particleCount = 50 * (timeLeft / duration);
+			// since particles fall down, start a bit higher than random
+			confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+			confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+		}, 250);
 	});
 </script>
