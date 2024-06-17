@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import monicaPhoto from "@/images/monica.jpeg";
 import { getEntry } from "astro:content";
+import { Card, Grid, Heading, Paragraph } from "fulldev-ui";
 
 const introList = await getEntry("intro", "intro");
 
@@ -12,74 +13,78 @@ const Content = (await introList?.render()).Content;
 
 <Layout title='Welcome to Astro.'>
 	<main>
-		<section class='intro'>
+		<section id='image-top'>
 			<Image class='monica-icon' src={monicaPhoto} alt='Astro logo' />
-			<article>
-				<Content />
-			</article>
 		</section>
-		
-			<a role="button" id="lets-go-button" href='https://www.onceuponawishtravel.com/monica-defosse?fbclid=IwZXh0bgNhZW0CMTEAAR1ni540p2iP6cKKQEpH9C1YbEZ3Y85XzHMWNy8TIHpJqG4AYLeSf4Ahyk0_aem_AQuQ1NTwg7A5BLtF8ltfcNDQcJiufX3cinjOdkbi0V3VZN3u5AbDer1vg7_uxauyFeqF3x1t4tYAM7nBhqd62bAE'>Let's Go!</a>
-		
+		<section id='text-section'>
+			<section id='article-section'>
+				<article class='prose md:prose-lg lg:prose-xl'>
+					<Content />
+				</article>
+				<a role='button' id='lets-go-button' href='https://www.onceuponawishtravel.com/monica-defosse?fbclid=IwZXh0bgNhZW0CMTEAAR1ni540p2iP6cKKQEpH9C1YbEZ3Y85XzHMWNy8TIHpJqG4AYLeSf4Ahyk0_aem_AQuQ1NTwg7A5BLtF8ltfcNDQcJiufX3cinjOdkbi0V3VZN3u5AbDer1vg7_uxauyFeqF3x1t4tYAM7nBhqd62bAE'>Let's Go!</a>
+			</section>
+		</section>
 	</main>
 </Layout>
 
 <style>
-	main {
-		display: grid;
-		grid-template-rows: 1fr 1fr;
-		padding: 1rem;
-	}
-
-	.intro {
+	#image-top {
 		display: flex;
-		flex-direction: row;
-		align-items: start;
-		gap: 2rem;
-		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		margin-top: 2rem;
+	}
+	.monica-icon {
+		border-radius: 50%;
+		width: 19rem;
+		aspect-ratio: 1 / 1;
+		object-fit: cover;
+		object-position: center;
+		padding: 0.5rem;
+		border: 3px rgb(255, 255, 255) solid;
+		box-shadow: 0 0 0.5rem rgb(255, 255, 255);
 	}
 
-	article {
-		flex: 1 0 0;
-		min-width: 300px;
-		font-size: 2rem;
-		line-height: 1.5;
-		color: goldenrod;
-		font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+	#text-section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 2rem;
+	}
+
+	#article-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
 		background-color: aliceblue;
 		padding: 1rem;
 		border-radius: 1rem;
-	}
-	.monica-icon {
-		width: 200px;
-		aspect-ratio: 1 / 1;
-		border-radius: 50%;
-		object-fit: cover;
-		object-position: center;
+		box-shadow: 0 0 0.5rem rgb(255, 255, 255);
+		transition: all 0.2s ease-in-out;
 	}
 
 	#lets-go-button {
-		background-color: lightblue;
-		width: fit-content;
-		padding: 1rem;
-		border-radius: 1rem;
-		color: black;
 		align-self: center;
-		margin-inline: auto;
-		transition: all 0.3s ease;
+		border: 3px gold solid;
+		border-radius: 1rem;
+		padding: 0.5rem;
+		transition: all 0.2s ease-in-out;
+		background-color: lightblue;
+		font-weight: bold;
 	}
 
 	#lets-go-button:hover {
 		background-color: rgb(0, 255, 255);
 		transform: scale(1.1);
 		border: 3px green solid;
+		color: white;
 	}
 </style>
 
 <script>
 	import confetti from "canvas-confetti";
 	const button = document.querySelector("#lets-go-button");
-	button?.addEventListener("mouseenter", () => {
-		confetti();
+	button?.addEventListener("mouseenter", async () => {
+		await confetti();
 	});
 </script>
