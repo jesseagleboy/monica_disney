@@ -7,7 +7,7 @@ import vercel from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://monica-disney.vercel.app/',
+  site: 'https://magicaladventuresbymonica.com/',
   integrations: [ tailwind( {
     applyBaseStyles: false,
   }), mdx(), sitemap()],

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://monica-disney.vercel.app/sitemap-index.xml
+Sitemap: https://magicaladventuresbymonica.com/sitemap-index.xml
