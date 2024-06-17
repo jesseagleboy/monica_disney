@@ -118,7 +118,7 @@ const Content = (await introList?.render()).Content;
 			return Math.random() * (max - min) + min;
 		}
 
-		var interval: Timer = setInterval(function () {
+		var interval: ReturnType<typeof setInterval> = setInterval(function () {
 			var timeLeft = animationEnd - Date.now();
 
 			if (timeLeft <= 0) {
