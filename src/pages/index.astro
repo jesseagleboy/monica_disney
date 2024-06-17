@@ -1,10 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-// import Card from "../components/Card.astro";
 import { Image } from "astro:assets";
 import monicaPhoto from "@/images/monica.jpeg";
 import { getEntry } from "astro:content";
-import { Card, Grid, Heading, Paragraph } from "fulldev-ui";
 
 const introList = await getEntry("intro", "intro");
 
