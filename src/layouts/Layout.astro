@@ -46,7 +46,17 @@ const { title, description = defaultDescription } = Astro.props;
 	</head>
 	<body>
 		<header>
-			<p>Monica DeFosse</p>
+			<section class='header-name-section'>
+				<a href='/'>
+					<p class='prose'>Magical Adventures By Monica</p>
+				</a>
+			</section>
+			<!-- <nav class="prose">
+				<a href='/'>Home</a>
+				<a href='/my-adventures'>My Adventures</a>
+				<a href='/faq'>FAQ</a>
+				<a href='/contact'>Contact</a>
+			</nav> -->
 		</header>
 		<div class='background-image'></div>
 		<div class='screen-safe-area'>
@@ -86,17 +96,6 @@ const { title, description = defaultDescription } = Astro.props;
 				box-sizing: border-box;
 			}
 
-			header {
-				display: flex;
-				padding: calc(env(safe-area-inset-top) + 1rem) 0.5rem;
-				align-items: center;
-				background-color: white;
-				background-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-				position: sticky;
-				top: 0;
-				z-index: 999;
-			}
-
 			.background-image {
 				background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Spaceship_Earth_with_Mickey%27s_Wand.jpg/1600px-Spaceship_Earth_with_Mickey%27s_Wand.jpg");
 				height: 500px;
@@ -127,6 +126,19 @@ const { title, description = defaultDescription } = Astro.props;
 				navigation: auto; /* enabled! */
 			}
 
+			header {
+				display: flex;
+				padding: calc(env(safe-area-inset-top) + 1rem) 0.5rem;
+				align-items: center;
+				background-color: white;
+				background-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+				position: sticky;
+				top: 0;
+				z-index: 999;
+
+				justify-content: space-between;
+			}
+
 			.screen-safe-area {
 				padding: 1rem;
 			}
@@ -136,6 +148,18 @@ const { title, description = defaultDescription } = Astro.props;
 				background-color: lightblue;
 				padding-inline: 1rem;
 				display: flex;
+			}
+
+			nav {
+				display: flex;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+
+			@media screen and (max-width: 600px) {
+				nav {
+					display: none;
+				}
 			}
 
 			.person-info {
