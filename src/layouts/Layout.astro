@@ -1,13 +1,19 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import favicon from "@/images/favicon.svg";
-import { Image } from "astro:assets";
+import oldEpcotPhoto from "@/images/old_epcot_logo_wiki.webp";
+import { Image, getImage } from "astro:assets";
 import "../styles/style.scss";
 
 interface Props {
 	title: string;
 	description?: string;
 }
+
+const optimizedImage = await getImage({
+	src: oldEpcotPhoto,
+	format: "webp",
+});
 
 const defaultDescription = "Once Upon A Wish Travel";
 
@@ -65,11 +71,10 @@ const { title, description = defaultDescription } = Astro.props;
 		<footer>
 			<section class='footer-info'>
 				<section class='person-info'>
-					<p>Monica DeFosse&nbsp;-&nbsp;</p>
-					<a href='https://onceuponawishtravel.com' class='prose'><p>Agent of <i>Once Upon A Wish Travel</i></p></a>
+					<p>Monica DeFosse - <a href='https://onceuponawishtravel.com' class='prose' aria-label='Once Upon A Wish Travel Website'><p>Agent of <i>Once Upon A Wish Travel</i></p></a></p>
 				</section>
 				<section class='contact'>
-					<a href='tel:5135152967' class='prose'><p>Phone: (513)-515-2967</p></a>
+					<a href='tel:5135152967' class='prose'><p>Phone: (513) 515-2967</p></a>
 					<a href='mailto:monica.defosse@onceuponawishtravel.com' class='prose'><p>Email: monica.defosse@onceuponawishtravel.com</p></a>
 				</section>
 				<section class='copyright'>
@@ -88,26 +93,6 @@ const { title, description = defaultDescription } = Astro.props;
 				--accent-dark: 49, 10, 101;
 				--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
 			}
-			html {
-				/* background: #13151a; */
-				height: 100%;
-			}
-			* {
-				box-sizing: border-box;
-			}
-
-			.background-image {
-				background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Spaceship_Earth_with_Mickey%27s_Wand.jpg/1600px-Spaceship_Earth_with_Mickey%27s_Wand.jpg");
-				height: 500px;
-				background-position: center;
-				background-repeat: no-repeat;
-				background-size: cover;
-				z-index: -1;
-				position: absolute;
-				left: 0;
-				right: 0;
-				filter: blur(10px) brightness(90%);
-			}
 
 			code {
 				font-family:
@@ -121,9 +106,30 @@ const { title, description = defaultDescription } = Astro.props;
 					monospace;
 			}
 		</style>
-		<style lang='scss'>
+		<style lang='scss' define:vars={{ bgSrc: `url(${optimizedImage.src})` }}>
 			@view-transition {
 				navigation: auto; /* enabled! */
+			}
+
+			body {
+				color: black;
+
+				& * {
+					transition: all 0.5s ease-in-out;
+				}
+			}
+
+			.background-image {
+				background-image: var(--bgSrc);
+				height: 500px;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				z-index: -1;
+				position: absolute;
+				left: 0;
+				right: 0;
+				filter: blur(10px) brightness(90%);
 			}
 
 			header {
@@ -160,10 +166,6 @@ const { title, description = defaultDescription } = Astro.props;
 				nav {
 					display: none;
 				}
-			}
-
-			.person-info {
-				display: flex;
 			}
 
 			#image-footer {

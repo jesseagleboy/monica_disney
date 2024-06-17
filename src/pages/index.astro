@@ -14,7 +14,7 @@ const description = "Monica DeFosse - Once Upon A Wish Travel";
 <Layout title='Monica DeFosse - Once Upon A Wish Travel' description={description}>
 	<main>
 		<section id='image-top'>
-			<Image class='monica-icon' src={monicaPhoto} alt='Astro logo' />
+			<Image class='monica-icon' src={monicaPhoto} width={305} alt='Astro logo' />
 		</section>
 		<section id='text-section'>
 			<section id='article-section'>
@@ -36,7 +36,7 @@ const description = "Monica DeFosse - Once Upon A Wish Travel";
 	}
 	.monica-icon {
 		border-radius: 50%;
-		width: 19rem;
+		/* width: 19rem; */
 		aspect-ratio: 1 / 1;
 		object-fit: cover;
 		object-position: center;
@@ -76,7 +76,7 @@ const description = "Monica DeFosse - Once Upon A Wish Travel";
 		color: red;
 	}
 
-	#lets-go-button:hover {
+	#lets-go-button:hover, #lets-go-button:focus {
 		background-color: rgb(0, 255, 255);
 		transform: scale(1.1);
 		border: 3px green solid;
@@ -109,7 +109,9 @@ const description = "Monica DeFosse - Once Upon A Wish Travel";
 <script>
 	import confetti from "canvas-confetti";
 	const button = document.querySelector("#lets-go-button");
-	button?.addEventListener("mouseenter", async () => {
+
+	async function doConfetti() {
+		
 		var duration = 7 * 1000;
 		var animationEnd = Date.now() + duration;
 		var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -130,5 +132,9 @@ const description = "Monica DeFosse - Once Upon A Wish Travel";
 			confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
 			confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
 		}, 250);
-	});
+	}
+
+
+	button?.addEventListener("mouseenter", doConfetti);
+	button?.addEventListener("focus", doConfetti);
 </script>

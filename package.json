@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "bun -bun astro dev",
+    "start": "bun --bun astro dev",
     "build": "astro check && bun --bun astro build",
-    "preview": "astro preview",
+    "preview": "bun --bun astro preview",
     "astro": "astro"
   },
   "dependencies": {
