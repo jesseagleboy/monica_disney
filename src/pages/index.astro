@@ -9,9 +9,11 @@ import { Card, Grid, Heading, Paragraph } from "fulldev-ui";
 const introList = await getEntry("intro", "intro");
 
 const Content = (await introList?.render()).Content;
+
+const description = "Monica DeFosse - Once Upon A Wish Travel";
 ---
 
-<Layout title='Monica DeFosse - Once Upon A Wish Travel'>
+<Layout title='Monica DeFosse - Once Upon A Wish Travel' description={description}>
 	<main>
 		<section id='image-top'>
 			<Image class='monica-icon' src={monicaPhoto} alt='Astro logo' />
