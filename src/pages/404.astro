@@ -1,22 +1,47 @@
 ---
+import Layout from "../layouts/Layout.astro";
 ---
 
-<main>
-    <h1>404 - Page Not Found</h1>
-    <p>Sorry, we couldn't find that page.</p>
-    <p>Please check the URL and try again.</p>
-    <p><a href="/" data-astro-prefetch>Go back to the homepage</a></p>
-</main>
+<Layout title='404 - Page Not Found'>
+	<main>
+		<section>
+			<article id='article-section' transition:name='main-box'>
+				<h1>404 - Page Not Found</h1>
+				<p>Sorry, we couldn't find that page.</p>
+				<p>Please check the URL and try again.</p>
+				<p><a href='/' data-astro-prefetch>Go back to the homepage</a></p>
+			</article>
+		</section>
+	</main>
+</Layout>
 
-<style lang="scss">
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        text-align: center;
+<style lang='scss'>
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100vh;
+		text-align: center;
+	}
+
+    h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        color: red;
     }
 
+	#article-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		background-color: aliceblue;
+		padding: 1rem;
+		border-radius: 1rem;
+		box-shadow: 0 0 0.5rem rgb(255, 255, 255);
+	}
 
+	article {
+		transition: all 0.2s ease-in-out;
+	}
 </style>
