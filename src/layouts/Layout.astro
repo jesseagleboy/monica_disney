@@ -1,16 +1,13 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-
+import favicon from "@/images/favicon.svg";
+import { Image } from "astro:assets";
 import "../styles/style.scss";
 
 interface Props {
 	title: string;
 	description?: string;
 }
-
-import monicaImage from "@/images/monica.jpeg";
-
-console.log(monicaImage);
 
 const defaultDescription = "Once Upon A Wish Travel";
 
@@ -68,6 +65,9 @@ const { title, description = defaultDescription } = Astro.props;
 				<section class='copyright'>
 					<p>© {new Date().getFullYear()}. All rights reserved.</p>
 				</section>
+			</section>
+			<section id='image-footer'>
+				<Image src={favicon} alt='Favicon - Footer Logo' />
 			</section>
 		</footer>
 
@@ -135,11 +135,20 @@ const { title, description = defaultDescription } = Astro.props;
 				border-top: 1px solid black;
 				background-color: lightblue;
 				padding-inline: 1rem;
+				display: flex;
 			}
 
 			.person-info {
 				display: flex;
-				// gap: 0.5rem;
+			}
+
+			#image-footer {
+				max-height: 100px;
+				height: 100%;
+				aspect-ratio: 1 / 1;
+				margin-left: auto;
+				opacity: 0.5;
+				padding: 1rem;
 			}
 		</style>
 	</body>
