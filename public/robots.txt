@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://localhost:3000/sitemap-index.xml
+Sitemap: https://monica-disney.vercel.app/sitemap-index.xml
