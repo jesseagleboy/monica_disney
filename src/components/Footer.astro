@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import favicon from "@/images/favicon.svg";
+---
+
+<footer class='footer p-10 bg-base-200 text-base-content mt-4'>
+	<aside>
+		<Image src={favicon} alt='Magical Adventures By Monica Logo' width={50} height={50} />
+		<p>Magical Adventures By Monica<br /><a class='link link-hover' href='https://onceuponawishtravel.com'>Agent of Once Upon A Wish Travel</a></p>
+	</aside>
+	<nav>
+		<h6 class='footer-title'>Company</h6>
+		<a href='/' class='link link-hover'>Home</a>
+		<a href='/about-me' class='link link-hover'>About Me</a>
+	</nav>
+	<nav>
+		<h6 class='footer-title'>Contact</h6>
+		<a href='tel:5135152967' class='link link-hover'>Phone: (513) 515-2967</a>
+		<a href='mailto:monica.defosse@onceuponawishtravel.com' class='link link-hover text-xs sm:text-sm'>Email: monica.defosse@onceuponawishtravel.com</a>
+	</nav>
+</footer>

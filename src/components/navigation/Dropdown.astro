@@ -1,0 +1,19 @@
+---
+interface Props {
+    parentName: string
+}
+const {parentName} = Astro.props
+---
+
+<li>
+	<details>
+		<summary>{parentName}</summary>
+		<ul class='p-2'>
+			<slot>
+                <!-- Fill in the slot -->
+				<li><a>Submenu 1</a></li>
+				<li><a>Submenu 2</a></li>
+			</slot>
+		</ul>
+	</details>
+</li>
