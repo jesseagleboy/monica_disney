@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TextSection from "../layouts/TextSection.astro";
 import { Image } from "astro:assets";
 import monicaPhoto from "@/images/monica.jpeg";
 import { getEntry } from "astro:content";
@@ -14,16 +15,12 @@ const description = "Monica DeFosse - Once Upon A Wish Travel";
 <Layout title='Monica DeFosse - Once Upon A Wish Travel' description={description}>
 	<main>
 		<section id='image-top'>
-			<Image class='monica-icon' src={monicaPhoto} width={305} alt='Astro logo' />
+			<Image class='monica-icon' src={monicaPhoto} width={305} alt='Monica DeFosse - Once Upon A Wish Travel Photo' />
 		</section>
-		<section id='text-section'>
-			<section id='article-section'>
-				<article class='prose md:prose-lg lg:prose-xl' transition:name='main-box'>
-					<Content />
-				</article>
-				<a role='button' id='lets-go-button' class='prose' href='https://www.onceuponawishtravel.com/monica-defosse?fbclid=IwZXh0bgNhZW0CMTEAAR1ni540p2iP6cKKQEpH9C1YbEZ3Y85XzHMWNy8TIHpJqG4AYLeSf4Ahyk0_aem_AQuQ1NTwg7A5BLtF8ltfcNDQcJiufX3cinjOdkbi0V3VZN3u5AbDer1vg7_uxauyFeqF3x1t4tYAM7nBhqd62bAE'>Start the Fireworks!</a>
-			</section>
-		</section>
+		<TextSection>
+			<Content slot='content-area' />
+			<a role='button' id='lets-go-button' class='prose' href='https://www.onceuponawishtravel.com/monica-defosse?fbclid=IwZXh0bgNhZW0CMTEAAR1ni540p2iP6cKKQEpH9C1YbEZ3Y85XzHMWNy8TIHpJqG4AYLeSf4Ahyk0_aem_AQuQ1NTwg7A5BLtF8ltfcNDQcJiufX3cinjOdkbi0V3VZN3u5AbDer1vg7_uxauyFeqF3x1t4tYAM7nBhqd62bAE'>Start the Fireworks!</a>
+		</TextSection>
 	</main>
 </Layout>
 
@@ -45,7 +42,7 @@ const description = "Monica DeFosse - Once Upon A Wish Travel";
 		box-shadow: 0 0 0.5rem rgb(255, 255, 255);
 	}
 
-	#text-section {
+	/* #text-section {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -64,7 +61,7 @@ const description = "Monica DeFosse - Once Upon A Wish Travel";
 
 	article {
 		transition: all 0.2s ease-in-out;
-	}
+	} */
 
 	#lets-go-button {
 		align-self: center;
@@ -106,34 +103,26 @@ const description = "Monica DeFosse - Once Upon A Wish Travel";
 		}
 	}
 </style>
-
 <script>
-	import confetti from "canvas-confetti";
-	const button = document.querySelector("#lets-go-button");
+	import doConfetti from "@/functions/doConfetti";
+	// doConfetti function has setInterval so it needs to be cleared before trasitioning. It also appears there are intervals called for each hover or mouse entered so you need an array of ids to track and clear them all before transitioning.
+	const resetArray: (typeof clearInterval)[] = [];
 
-	async function doConfetti() {
-		var duration = 7 * 1000;
-		var animationEnd = Date.now() + duration;
-		var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+	document.addEventListener("astro:page-load", async () => {
+		// This section is for coming back from the Once Upon A Wish Travel page. There is no transition there so "before swap" is never called.
 
-		function randomInRange(min: number, max: number) {
-			return Math.random() * (max - min) + min;
+		if (resetArray.length > 0) {
+			resetArray.forEach(reset => reset());
+			resetArray.length = 0;
 		}
 
-		var interval: ReturnType<typeof setInterval> = setInterval(function () {
-			var timeLeft = animationEnd - Date.now();
+		const button = document.querySelector("#lets-go-button");
+		button?.addEventListener("mouseenter", async () => {
+			resetArray.push(await doConfetti());
+		});
 
-			if (timeLeft <= 0) {
-				return clearInterval(interval);
-			}
-
-			var particleCount = 50 * (timeLeft / duration);
-			// since particles fall down, start a bit higher than random
-			confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-			confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
-		}, 250);
-	}
-
-	button?.addEventListener("mouseenter", doConfetti);
-	button?.addEventListener("focus", doConfetti);
+		button?.addEventListener("focus", async () => {
+			resetArray.push(await doConfetti());
+		});
+	});
 </script>

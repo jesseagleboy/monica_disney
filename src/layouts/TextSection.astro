@@ -1,0 +1,37 @@
+---
+
+---
+
+<section id='text-section'>
+	<section id='article-section'>
+		<article class='prose md:prose-lg lg:prose-xl' transition:name='main-box'>
+			<slot name='content-area'>
+				<!-- Fill in text here -->
+			</slot>
+		</article>
+		<slot />
+	</section>
+</section>
+
+<style lang='scss'>
+	#text-section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 2rem;
+	}
+
+	#article-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		background-color: aliceblue;
+		padding: 1rem;
+		border-radius: 1rem;
+		box-shadow: 0 0 0.5rem rgb(255, 255, 255);
+	}
+
+	article {
+		transition: all 0.2s ease-in-out;
+	}
+</style>

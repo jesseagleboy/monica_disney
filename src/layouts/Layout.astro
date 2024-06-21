@@ -27,8 +27,21 @@ const { title, description = defaultDescription } = Astro.props;
 		<meta name='description' content={description} />
 		<meta name='viewport' content='width=device-width; initial-scale=1; viewport-fit=cover' />
 		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+		<link rel='apple-touch-icon' type='image/svg+xml' href='/favicon.svg' />
 		<meta name='generator' content={Astro.generator} />
 		<link rel='sitemap' href='/sitemap-index.xml' />
+
+		<!-- Google tag (gtag.js) -->
+		<script is:inline type='text/partytown' async src='https://www.googletagmanager.com/gtag/js?id=G-W6LDP1M78E'></script>
+		<script is:inline type='text/partytown'>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-W6LDP1M78E");
+		</script>
 
 		<!-- Facebook Meta Tags -->
 		<meta property='og:url' content='https://magicaladventuresbymonica.com/' />
@@ -57,12 +70,13 @@ const { title, description = defaultDescription } = Astro.props;
 					<p class='prose'>Magical Adventures By Monica</p>
 				</a>
 			</section>
-			<!-- <nav class="prose">
+			<nav class='prose'>
 				<a href='/'>Home</a>
-				<a href='/my-adventures'>My Adventures</a>
+				<!-- <a href='/my-adventures'>My Adventures</a>
 				<a href='/faq'>FAQ</a>
-				<a href='/contact'>Contact</a>
-			</nav> -->
+				<a href='/contact'>Contact</a> -->
+				<a href='/about-me'>About Me</a>
+			</nav>
 		</header>
 		<div class='background-image'></div>
 		<div class='screen-safe-area'>
@@ -137,6 +151,14 @@ const { title, description = defaultDescription } = Astro.props;
 				justify-content: space-between;
 			}
 
+			body {
+				// border: 10px green solid;
+				min-height: 100dvh;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
 			.screen-safe-area {
 				padding: 1rem;
 			}
@@ -144,7 +166,7 @@ const { title, description = defaultDescription } = Astro.props;
 			footer {
 				border-top: 1px solid black;
 				background-color: lightblue;
-				padding-inline: 1rem;
+				padding: 1rem;
 				display: flex;
 			}
 
