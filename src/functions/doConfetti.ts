@@ -1,5 +1,5 @@
 import confetti from "canvas-confetti";
-async function doConfetti() {
+async function doConfetti() : Promise<() => void> {
 	const duration = 7 * 1000;
 	const animationEnd = Date.now() + duration;
 	const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };

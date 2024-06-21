@@ -49,7 +49,7 @@
 <script>
 	import doConfetti from "@/functions/doConfetti";
 	// doConfetti function has setInterval so it needs to be cleared before trasitioning. It also appears there are intervals called for each hover or mouse entered so you need an array of ids to track and clear them all before transitioning.
-	const resetArray: (typeof clearInterval)[] = [];
+	const resetArray: Awaited<() => void>[] = [];
 
 	document.addEventListener("astro:page-load", async () => {
 		// This section is for coming back from the Once Upon A Wish Travel page. There is no transition there so "before swap" is never called.
