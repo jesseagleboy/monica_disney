@@ -2,6 +2,10 @@
   "name": "monica-disney-universal-travel-agent",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=18.x",
+    "bun": ">=1.1.0"
+  },
   "scripts": {
     "dev": "bun --bun astro dev",
     "start": "bun --bun astro dev",
