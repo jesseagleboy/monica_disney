@@ -121,9 +121,9 @@ const { title, description = defaultDescription } = Astro.props;
 			}
 		</style>
 		<style lang='scss' define:vars={{ bgSrc: `url(${optimizedImage.src})` }}>
-			@view-transition {
-				navigation: auto; /* enabled! */
-			}
+			// @view-transition {
+			// 	navigation: auto; /* enabled! */
+			// }
 
 			.background-image {
 				background-image: var(--bgSrc);
