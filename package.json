@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "bun --bun astro dev",
+    "dev": "bun --bun astro dev --host",
     "start": "bun --bun astro dev",
     "build": "astro check && bun --bun astro build",
-    "preview": "bun --bun astro preview",
+    "preview": "bun --bun astro preview --host",
     "astro": "astro"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "@types/canvas-confetti": "^1.6.4",
     "@types/cssesc": "^3.0.2",
     "@types/html-escaper": "^3.0.2",
+    "daisyui": "^4.12.2",
     "postcss-html": "^1.7.0",
     "prettier": "^3.3.2",
     "prettier-plugin-astro": "^0.14.0",

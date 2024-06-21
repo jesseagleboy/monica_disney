@@ -1,9 +1,10 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import favicon from "@/images/favicon.svg";
+import Footer from "@/components/Footer.astro";
 import oldEpcotPhoto from "@/images/old_epcot_logo_wiki.webp";
-import { Image, getImage } from "astro:assets";
+import { getImage } from "astro:assets";
 import "../styles/style.scss";
+import Navbar from "@/components/navigation/Navbar.astro";
 
 interface Props {
 	title: string;
@@ -24,7 +25,7 @@ const { title, description = defaultDescription } = Astro.props;
 	<head>
 		<meta charset='UTF-8' />
 		<meta name='description' content={description} />
-		<meta name='viewport' content='width=device-width; initial-scale=1; viewport-fit=cover' />
+		<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
 		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 		<link rel='apple-touch-icon' type='image/svg+xml' href='/favicon.svg' />
 		<meta name='generator' content={Astro.generator} />
@@ -46,8 +47,9 @@ const { title, description = defaultDescription } = Astro.props;
 		<meta property='og:url' content='https://magicaladventuresbymonica.com/' />
 		<meta property='og:type' content='website' />
 		<meta property='og:title' content='Monica DeFosse - Once Upon A Wish Travel' />
-		<meta property='og:description' content='Monica DeFosse - Once Upon A Wish Travel' />
+		<meta property='og:description' content='Making your magical adventures come alive!' />
 		<meta property='og:image' content='https://magicaladventuresbymonica.com/monica_og_image.jpeg' />
+		<meta property='og:site_name' content='Magical Adventures By Monica' />
 
 		<!-- Twitter Meta Tags -->
 		<meta name='twitter:card' content='summary_large_image' />
@@ -63,42 +65,16 @@ const { title, description = defaultDescription } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
-		<header>
-			<section class='header-name-section'>
-				<a href='/'>
-					<p class='prose'>Magical Adventures By Monica</p>
-				</a>
-			</section>
-			<nav class='prose'>
-				<a href='/' title='Home'>Home</a>
-				<!-- <a href='/my-adventures'>My Adventures</a>
-				<a href='/faq'>FAQ</a>
-				<a href='/contact'>Contact</a> -->
-				<a href='/about-me' title='About Me'>About Me</a>
-				<a href='https://www.onceuponawishtravel.com/monica-defosse?fbclid=IwZXh0bgNhZW0CMTEAAR1ni540p2iP6cKKQEpH9C1YbEZ3Y85XzHMWNy8TIHpJqG4AYLeSf4Ahyk0_aem_AQuQ1NTwg7A5BLtF8ltfcNDQcJiufX3cinjOdkbi0V3VZN3u5AbDer1vg7_uxauyFeqF3x1t4tYAM7nBhqd62bAE' title='Start Trip'>Start Trip</a>
-			</nav>
-		</header>
-		<div class='background-image'></div>
-		<div class='screen-safe-area'>
-			<slot />
-		</div>
-		<footer transition:name='footer'>
-			<section class='footer-info'>
-				<section class='person-info'>
-					<p>Monica DeFosse - <a href='https://onceuponawishtravel.com' class='prose' aria-label='Once Upon A Wish Travel Website'><p>Agent of <i>Once Upon A Wish Travel</i></p></a></p>
-				</section>
-				<section class='contact'>
-					<a href='tel:5135152967' class='prose'><p>Phone: (513) 515-2967</p></a>
-					<a href='mailto:monica.defosse@onceuponawishtravel.com' class='prose'><p>Email: monica.defosse@onceuponawishtravel.com</p></a>
-				</section>
-				<section class='copyright'>
-					<p>© {new Date().getFullYear()}. All rights reserved.</p>
-				</section>
-			</section>
-			<section id='image-footer'>
-				<Image src={favicon} alt='Favicon - Footer Logo' />
-			</section>
-		</footer>
+		<span class='flex flex-col justify-between h-dvh'>
+			<header>
+				<Navbar />
+			</header>
+			<div class='background-image'></div>
+			<div class='container mx-auto px-4'>
+				<slot />
+			</div>
+			<Footer />
+		</span>
 
 		<style is:global>
 			:root {
@@ -119,6 +95,7 @@ const { title, description = defaultDescription } = Astro.props;
 					Courier New,
 					monospace;
 			}
+
 		</style>
 		<style lang='scss' define:vars={{ bgSrc: `url(${optimizedImage.src})` }}>
 			@view-transition {
@@ -136,59 +113,6 @@ const { title, description = defaultDescription } = Astro.props;
 				left: 0;
 				right: 0;
 				filter: blur(10px) brightness(90%);
-			}
-
-			header {
-				display: flex;
-				padding: calc(env(safe-area-inset-top) + 1rem) 0.5rem;
-				align-items: center;
-				background-color: white;
-				background-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-				position: sticky;
-				top: 0;
-				z-index: 999;
-
-				justify-content: space-between;
-			}
-
-			body {
-				// border: 10px green solid;
-				min-height: 100dvh;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-			}
-
-			.screen-safe-area {
-				padding: 1rem;
-			}
-
-			footer {
-				border-top: 1px solid black;
-				background-color: lightblue;
-				padding: 1rem;
-				display: flex;
-			}
-
-			nav {
-				display: flex;
-				gap: 1rem;
-				flex-wrap: wrap;
-			}
-
-			@media screen and (max-width: 600px) {
-				nav {
-					display: none;
-				}
-			}
-
-			#image-footer {
-				max-height: 100px;
-				height: 100%;
-				aspect-ratio: 1 / 1;
-				margin-left: auto;
-				opacity: 0.5;
-				padding: 1rem;
 			}
 		</style>
 	</body>
