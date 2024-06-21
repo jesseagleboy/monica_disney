@@ -12,7 +12,6 @@ interface Props {
 
 const optimizedImage = await getImage({
 	src: oldEpcotPhoto,
-	format: "webp",
 });
 
 const defaultDescription = "Once Upon A Wish Travel";
@@ -71,18 +70,19 @@ const { title, description = defaultDescription } = Astro.props;
 				</a>
 			</section>
 			<nav class='prose'>
-				<a href='/'>Home</a>
+				<a href='/' title='Home'>Home</a>
 				<!-- <a href='/my-adventures'>My Adventures</a>
 				<a href='/faq'>FAQ</a>
 				<a href='/contact'>Contact</a> -->
-				<a href='/about-me'>About Me</a>
+				<a href='/about-me' title='About Me'>About Me</a>
+				<a href='https://www.onceuponawishtravel.com/monica-defosse?fbclid=IwZXh0bgNhZW0CMTEAAR1ni540p2iP6cKKQEpH9C1YbEZ3Y85XzHMWNy8TIHpJqG4AYLeSf4Ahyk0_aem_AQuQ1NTwg7A5BLtF8ltfcNDQcJiufX3cinjOdkbi0V3VZN3u5AbDer1vg7_uxauyFeqF3x1t4tYAM7nBhqd62bAE' title='Start Trip'>Start Trip</a>
 			</nav>
 		</header>
 		<div class='background-image'></div>
 		<div class='screen-safe-area'>
 			<slot />
 		</div>
-		<footer>
+		<footer transition:name='footer'>
 			<section class='footer-info'>
 				<section class='person-info'>
 					<p>Monica DeFosse - <a href='https://onceuponawishtravel.com' class='prose' aria-label='Once Upon A Wish Travel Website'><p>Agent of <i>Once Upon A Wish Travel</i></p></a></p>

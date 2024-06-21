@@ -1,4 +1,6 @@
 ---
+import FireworksButton from "@/components/FireworksButton.astro"
+
 
 ---
 
@@ -10,6 +12,7 @@
 			</slot>
 		</article>
 		<slot />
+		<FireworksButton />
 	</section>
 </section>
 
@@ -34,4 +37,8 @@
 	article {
 		transition: all 0.2s ease-in-out;
 	}
+
+	
 </style>
+
+
