@@ -1,21 +1,33 @@
+#about-me-main {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
 
 #about-me-main section:has(img) {
-   display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    align-items: center;
-    justify-content: space-between
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 1.5rem;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#about-me-main section {
+	padding: 1rem;
+	border-radius: 5px;
+    background-color: white;
+}
+
+#article-section {
+	background-color: revert;
 }
 
 article {
-    flex: 1 1 0;
+	flex: 1 1 0;
 }
 
-
 img {
-    // max-width: 400px;
-    // max-height: 400px;
-    object-fit: contain;
-    border-radius: 5%;
-    flex: 1 1 0;
+	object-fit: contain;
+	border-radius: 1rem;
+	flex: 1 1 0;
 }

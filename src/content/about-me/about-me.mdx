@@ -1,17 +1,16 @@
 ---
-
 ---
-import { Image } from 'astro:assets'
-import link1 from '@/images/monica_baba_polaroid.jpeg'
-import link2 from '@/images/monica_baba_frame.jpeg'
-import link3 from '@/images/monica_jesse_castle.jpeg'
-import "@/styles/about-me-blog.scss"
 
-
-
+import { Image } from "astro:assets";
+import link1 from "@/images/monica_baba_polaroid.jpeg";
+import link2 from "@/images/monica_baba_frame.jpeg";
+import link3 from "@/images/monica_jesse_castle.jpeg";
+import "@/styles/about-me-blog.scss";
 
 # Hello, Dreamers
+
 <main id="about-me-main">
+
 <section>
 <Image src={link1} alt="Monica and Baba tossing pennies" />
 <article>
@@ -20,15 +19,18 @@ I'm Monica, a devoted enthusiast of travel, books, and fiber arts from Cincinnat
 </section>
 
 <section>
-Tragically, disaster struck, and my Baba passed away before the trip. In his memory, my Memaw decided to take us, marking the beginning of my enduring love affair with Disney destinations. Going to Disney World with my family during this time of tragedy, the atmosphere and magic kept the joy my Baba gave me alive, and Disney has become a place of hope and positivity for me.
-<Image src={link2} alt="Monica and Baba Picture Frame" />
+<article>
+	Tragically, disaster struck, and my Baba passed away before the trip. In his memory, my Memaw decided to take us, marking the beginning of my enduring love affair with Disney destinations. Going to Disney World with my family during this time of tragedy, the atmosphere and magic kept the joy my Baba gave me alive, and Disney has become a place of hope and positivity for me.
+    </article>
+	<Image src={link2} alt='Monica and Baba Picture Frame' />
 </section>
 
 <section>
-<Image src={link3} alt="Monica and Jesse at the Walt Disney World castle" />
-<article>
-As an adult, my passion for travel was reignited when my father took me to Monterey, California, for my 18th birthday. There, I spent my time obsessively watching otters and reading books on the beach. Later, my boyfriend introduced me to the diverse flavors of Universal Studios (I’m a proud Ravenclaw, by the way). Today, I embark on regular journeys, with many leading me to the Happiest Place on Earth. There, I actively participate in RunDisney events, cultivate an appreciation for thrill rides, and indulge in some of the finest cuisine available.
-</article>
+	<Image src={link3} alt='Monica and Jesse at the Walt Disney World castle' />
+	<article>
+		As an adult, my passion for travel was reignited when my father took me to Monterey, California, for my 18th birthday. There, I spent my time obsessively watching otters and reading books on the beach. Later, my boyfriend introduced me to the diverse flavors of Universal Studios (I’m a proud Ravenclaw, by the way). Today, I embark on regular journeys, with many leading me to the Happiest Place on Earth. There, I actively participate in RunDisney events, cultivate an appreciation for thrill
+		rides, and indulge in some of the finest cuisine available.
+	</article>
 </section>
 
 <section>

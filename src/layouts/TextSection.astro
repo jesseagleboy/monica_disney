@@ -1,7 +1,5 @@
 ---
-import FireworksButton from "@/components/FireworksButton.astro"
-
-
+import FireworksButton from "@/components/FireworksButton.astro";
 ---
 
 <section id='text-section'>
@@ -18,27 +16,27 @@ import FireworksButton from "@/components/FireworksButton.astro"
 
 <style lang='scss'>
 	#text-section {
+		margin-block: 1rem;
 		display: flex;
 		justify-content: center;
-		align-items: center;
-		margin-top: 2rem;
 	}
-
 	#article-section {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
-		background-color: aliceblue;
+		align-items: center;
+		justify-content: space-around;
 		padding: 1rem;
-		border-radius: 1rem;
-		box-shadow: 0 0 0.5rem rgb(255, 255, 255);
+		border-radius: 0.5rem;
+		gap: 0.5rem;
 	}
 
 	article {
 		transition: all 0.2s ease-in-out;
 	}
-
-	
 </style>
 
-
+<style is:global>
+	#article-section {
+		background-color: aliceblue;
+	}
+</style>

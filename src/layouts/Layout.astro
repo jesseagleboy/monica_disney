@@ -65,11 +65,11 @@ const { title, description = defaultDescription } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
+		<span class="bg-filter"></span>
 		<span class='flex flex-col justify-between h-dvh'>
 			<header>
 				<Navbar />
 			</header>
-			<div class='background-image'></div>
 			<div class='container mx-auto px-4'>
 				<slot />
 			</div>
@@ -95,24 +95,21 @@ const { title, description = defaultDescription } = Astro.props;
 					Courier New,
 					monospace;
 			}
-
 		</style>
 		<style lang='scss' define:vars={{ bgSrc: `url(${optimizedImage.src})` }}>
 			@view-transition {
 				navigation: auto; /* enabled! */
 			}
 
-			.background-image {
+			html {
 				background-image: var(--bgSrc);
-				height: 500px;
-				background-position: center;
-				background-repeat: no-repeat;
+				background-attachment: fixed;
 				background-size: cover;
-				z-index: -1;
-				position: absolute;
-				left: 0;
-				right: 0;
-				filter: blur(10px) brightness(90%);
+				background-position: center;
+			}
+
+			.container {
+				backdrop-filter: blur(10px);
 			}
 		</style>
 	</body>
