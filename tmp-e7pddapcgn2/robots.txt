@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://magicaladventuresbymonica.com/sitemap-index.xml

@@ -5,7 +5,6 @@ import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel/static";
 import partytown from "@astrojs/partytown";
 import vercel from "@astrojs/vercel/static";
-import qwikdev from "@qwikdev/astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,9 +20,7 @@ export default defineConfig({
 				forward: ["dataLayer.push"],
 			},
 		}),
-		qwikdev(),
 	],
 	output: "static",
-
 	adapter: vercel(),
 });

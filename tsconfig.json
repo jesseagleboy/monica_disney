@@ -6,7 +6,5 @@
       "@/*": ["src/*"],
       "@/images": ["src/images"],
     },
-     "jsx": "react-jsx",
-  "jsxImportSource": "@builder.io/qwik"
   }
 }
