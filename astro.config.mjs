@@ -4,9 +4,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel/static";
 import partytown from "@astrojs/partytown";
-
-// import vercel from "@astrojs/vercel/static";
-
+import vercel from "@astrojs/vercel/static";
 import qwikdev from "@qwikdev/astro";
 
 // https://astro.build/config
@@ -26,4 +24,6 @@ export default defineConfig({
 		qwikdev(),
 	],
 	output: "static",
+
+	adapter: vercel(),
 });
