@@ -65,14 +65,14 @@ const { title, description = defaultDescription } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
-		<span class="bg-filter"></span>
+		<span class='bg-filter'></span>
 		<span class='flex flex-col justify-between h-dvh'>
 			<header>
 				<Navbar />
 			</header>
-			<div class='container mx-auto px-4'>
+			<main class='container mx-auto px-4'>
 				<slot />
-			</div>
+			</main>
 			<Footer />
 		</span>
 

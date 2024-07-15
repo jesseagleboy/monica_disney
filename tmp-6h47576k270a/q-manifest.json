@@ -1,0 +1,177 @@
+{
+  "manifestHash": "e5b8un",
+  "symbols": {
+    "s_0dmVfZIIe4c": {
+      "origin": "components/QwikFireworks.tsx",
+      "displayName": "QwikFireworks_component",
+      "canonicalFilename": "s_0dmvfziie4c",
+      "hash": "0dmVfZIIe4c",
+      "ctxKind": "function",
+      "ctxName": "component$",
+      "captures": false,
+      "parent": null,
+      "loc": [
+        202,
+        1062
+      ]
+    },
+    "s_B0toCHiCUVs": {
+      "origin": "components/QwikFireworks.tsx",
+      "displayName": "QwikFireworks_component_a_onFocus",
+      "canonicalFilename": "s_b0tochicuvs",
+      "hash": "B0toCHiCUVs",
+      "ctxKind": "eventHandler",
+      "ctxName": "onFocus$",
+      "captures": true,
+      "parent": "s_0dmVfZIIe4c",
+      "loc": [
+        976,
+        1023
+      ]
+    },
+    "s_mNqEt7uJEmo": {
+      "origin": "components/QwikFireworks.tsx",
+      "displayName": "QwikFireworks_component_a_onMouseEnter",
+      "canonicalFilename": "s_mnqet7ujemo",
+      "hash": "mNqEt7uJEmo",
+      "ctxKind": "eventHandler",
+      "ctxName": "onMouseEnter$",
+      "captures": true,
+      "parent": "s_0dmVfZIIe4c",
+      "loc": [
+        917,
+        964
+      ]
+    }
+  },
+  "mapping": {
+    "s_0dmVfZIIe4c": "q-hNLSQsdy.js",
+    "s_B0toCHiCUVs": "q-CbZtlNhE.js",
+    "s_mNqEt7uJEmo": "q-zHO_Rwyh.js"
+  },
+  "bundles": {
+    "q-B0InxMIM.js": {
+      "size": 1077
+    },
+    "q-CbZtlNhE.js": {
+      "size": 157,
+      "imports": [
+        "q-DBruNRur.js",
+        "q-DYX1Z3lG.js"
+      ],
+      "origins": [
+        "src/components/s_b0tochicuvs.js"
+      ],
+      "symbols": [
+        "s_B0toCHiCUVs"
+      ]
+    },
+    "q-DBruNRur.js": {
+      "size": 59203,
+      "origins": [
+        "@builder.io/qwik/build",
+        "node_modules/@builder.io/qwik/core.prod.mjs"
+      ]
+    },
+    "q-DYX1Z3lG.js": {
+      "size": 11066,
+      "origins": [
+        "node_modules/canvas-confetti/dist/confetti.module.mjs",
+        "src/functions/doConfetti.ts"
+      ]
+    },
+    "q-hNLSQsdy.js": {
+      "size": 662,
+      "imports": [
+        "q-B0InxMIM.js",
+        "q-DBruNRur.js"
+      ],
+      "dynamicImports": [
+        "q-CbZtlNhE.js",
+        "q-zHO_Rwyh.js"
+      ],
+      "origins": [
+        "src/components/s_0dmvfziie4c.js"
+      ],
+      "symbols": [
+        "s_0dmVfZIIe4c"
+      ]
+    },
+    "q-zHO_Rwyh.js": {
+      "size": 157,
+      "imports": [
+        "q-DBruNRur.js",
+        "q-DYX1Z3lG.js"
+      ],
+      "origins": [
+        "src/components/s_mnqet7ujemo.js"
+      ],
+      "symbols": [
+        "s_mNqEt7uJEmo"
+      ]
+    },
+    "q-ZKgQeqt8.js": {
+      "size": 171,
+      "imports": [
+        "q-B0InxMIM.js",
+        "q-DBruNRur.js"
+      ],
+      "dynamicImports": [
+        "q-hNLSQsdy.js"
+      ],
+      "origins": [
+        "src/components/FireworksButton.scss",
+        "src/components/QwikFireworks.tsx"
+      ]
+    }
+  },
+  "injections": [
+    {
+      "tag": "style",
+      "location": "head",
+      "attributes": {
+        "data-src": "/assets/style-CNAgXiHE.css",
+        "dangerouslySetInnerHTML": "#lets-go-button{align-self:center;border:3px gold solid;border-radius:1rem;padding:.5rem;transition:all .2s ease-in-out;font-weight:700;color:red;background-color:#fff}#lets-go-button:hover,#lets-go-button:focus{background-color:#0ff;transform:scale(1.1);border:3px green solid;color:#fff;background-image:linear-gradient(45deg,red,orange,#ff0,green,#00f);background-size:500px;background-position:right;animation-name:background-rainbow;animation-duration:5s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;animation-direction:alternate}@keyframes background-rainbow{0%{background-position:right}50%{background-position:top;background-size:300px}to{background-position:bottom;background-size:500px}}\n"
+      }
+    },
+    {
+      "tag": "style",
+      "location": "head",
+      "attributes": {
+        "data-src": "/build/q-CNAgXiHE.css",
+        "dangerouslySetInnerHTML": "#lets-go-button{align-self:center;border:3px gold solid;border-radius:1rem;padding:.5rem;transition:all .2s ease-in-out;font-weight:700;color:red;background-color:#fff}#lets-go-button:hover,#lets-go-button:focus{background-color:#0ff;transform:scale(1.1);border:3px green solid;color:#fff;background-image:linear-gradient(45deg,red,orange,#ff0,green,#00f);background-size:500px;background-position:right;animation-name:background-rainbow;animation-duration:5s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;animation-direction:alternate}@keyframes background-rainbow{0%{background-position:right}50%{background-position:top;background-size:300px}to{background-position:bottom;background-size:500px}}\n"
+      }
+    },
+    {
+      "tag": "style",
+      "location": "head",
+      "attributes": {
+        "data-src": "/assets/style-CNAgXiHE.css",
+        "dangerouslySetInnerHTML": "#lets-go-button{align-self:center;border:3px gold solid;border-radius:1rem;padding:.5rem;transition:all .2s ease-in-out;font-weight:700;color:red;background-color:#fff}#lets-go-button:hover,#lets-go-button:focus{background-color:#0ff;transform:scale(1.1);border:3px green solid;color:#fff;background-image:linear-gradient(45deg,red,orange,#ff0,green,#00f);background-size:500px;background-position:right;animation-name:background-rainbow;animation-duration:5s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;animation-direction:alternate}@keyframes background-rainbow{0%{background-position:right}50%{background-position:top;background-size:300px}to{background-position:bottom;background-size:500px}}\n"
+      }
+    },
+    {
+      "tag": "style",
+      "location": "head",
+      "attributes": {
+        "data-src": "/build/q-CNAgXiHE.css",
+        "dangerouslySetInnerHTML": "#lets-go-button{align-self:center;border:3px gold solid;border-radius:1rem;padding:.5rem;transition:all .2s ease-in-out;font-weight:700;color:red;background-color:#fff}#lets-go-button:hover,#lets-go-button:focus{background-color:#0ff;transform:scale(1.1);border:3px green solid;color:#fff;background-image:linear-gradient(45deg,red,orange,#ff0,green,#00f);background-size:500px;background-position:right;animation-name:background-rainbow;animation-duration:5s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;animation-direction:alternate}@keyframes background-rainbow{0%{background-position:right}50%{background-position:top;background-size:300px}to{background-position:bottom;background-size:500px}}\n"
+      }
+    }
+  ],
+  "version": "1",
+  "options": {
+    "target": "client",
+    "buildMode": "production",
+    "entryStrategy": {
+      "type": "hook"
+    }
+  },
+  "platform": {
+    "qwik": "1.7.1",
+    "vite": "",
+    "rollup": "4.18.0",
+    "env": "bun",
+    "os": "darwin"
+  }
+}

@@ -1,14 +1,16 @@
 ---
 import { getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import TextSection from "@/layouts/TextSection.astro"
+import TextSection from "@/layouts/TextSection.astro";
 
 const post = await getEntry("about-me", "about-me");
 const { Content } = await post?.render();
 ---
 
 <Layout title='Monica DeFosse - About Me'>
-	<TextSection>
-		<Content slot='content-area' />
-	</TextSection>
+	
+		<TextSection>
+			<Content slot='content-area' />
+		</TextSection>
+	
 </Layout>
