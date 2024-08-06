@@ -1,5 +1,5 @@
 ---
-export const prerender = true
+export const prerender = true;
 import Layout from "@/layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
 import { loadQuery } from "@/sanitymonicadisneysite/lib/load-query";
@@ -11,23 +11,11 @@ export const getStaticPaths = (async () => {
 		query: `*[_type == "post"]`,
 	});
 
-	const routes = [
-		...posts.map(({ slug }) => ({
-			params: {
-				slug: slug.current,
-			},
-		})),
-		{
-			params: {
-				slug: "hello-world",
-			},
+	const routes = posts.map(({ slug }) => ({
+		params: {
+			slug: slug.current,
 		},
-		{
-			params: {
-				slug: "hi",
-			},
-		},
-	];
+	}));
 
 	return routes;
 }) satisfies GetStaticPaths;
@@ -40,7 +28,7 @@ const { data: post } = await loadQuery<{ title: string; body: any[] }>({
 });
 ---
 
-<Layout title={post?.title}>
-	<h1>A post about {post.title}</h1>
+<Layout title={post.title}>
+	<h1>{post.title}</h1>
 	<PortableText portableText={post.body} />
 </Layout>

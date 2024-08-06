@@ -15,7 +15,6 @@ export default defineConfig({
 			previewUrl: location.origin,
 		}),
 	],
-
 	schema: {
 		types: schemaTypes,
 	},

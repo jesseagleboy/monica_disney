@@ -1,7 +1,7 @@
 {
 	"name": "monica-disney-universal-travel-agent",
 	"type": "module",
-	"version": "0.5.0",
+	"version": "0.75.0",
 	"scripts": {
 		"dev": "bun --bun astro dev --host",
 		"start": "bun --bun astro dev",
@@ -19,9 +19,10 @@
 		"@astrojs/vercel": "^7.7.2",
 		"@portabletext/types": "^2.0.13",
 		"@sanity/astro": "^3.1.4",
+		"@sanity/cli": "^3.53.0",
 		"@sanity/client": "^6.21.1",
 		"@sanity/image-url": "^1.0.2",
-		"@sanity/vision": "^3.52.4",
+		"@sanity/vision": "^3.53.0",
 		"@sanity/visual-editing": "^2.1.8",
 		"@swup/astro": "^1.4.1",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
@@ -38,8 +39,9 @@
 		"fulldev-ui": "^0.3.30",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
-		"sanity": "^3.52.4",
+		"sanity": "^3.53.0",
 		"sass": "^1.77.8",
+		"styled-components": "^6.1.12",
 		"tailwindcss": "^3.4.7",
 		"typescript": "^5.5.4",
 		"vercel": "^35.2.3"
