@@ -1,0 +1,46 @@
+---
+export const prerender = true
+import Layout from "@/layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+import { loadQuery } from "@/sanitymonicadisneysite/lib/load-query";
+import type { SanityDocument } from "@sanity/client";
+import PortableText from "@/components/PortableText.astro";
+
+export const getStaticPaths = (async () => {
+	const { data: posts } = await loadQuery<SanityDocument[]>({
+		query: `*[_type == "post"]`,
+	});
+
+	const routes = [
+		...posts.map(({ slug }) => ({
+			params: {
+				slug: slug.current,
+			},
+		})),
+		{
+			params: {
+				slug: "hello-world",
+			},
+		},
+		{
+			params: {
+				slug: "hi",
+			},
+		},
+	];
+
+	return routes;
+}) satisfies GetStaticPaths;
+
+const { params } = Astro;
+
+const { data: post } = await loadQuery<{ title: string; body: any[] }>({
+	query: `*[_type == "post" && slug.current == $slug][0]`,
+	params,
+});
+---
+
+<Layout title={post?.title}>
+	<h1>A post about {post.title}</h1>
+	<PortableText portableText={post.body} />
+</Layout>

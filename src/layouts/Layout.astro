@@ -5,6 +5,7 @@ import oldEpcotPhoto from "@/images/old_epcot_logo_wiki.webp";
 import { getImage } from "astro:assets";
 import "../styles/style.scss";
 import Navbar from "@/components/navigation/Navbar.astro";
+import { VisualEditing } from "@sanity/astro/visual-editing";
 
 interface Props {
 	title: string;
@@ -14,6 +15,10 @@ interface Props {
 const optimizedImage = await getImage({
 	src: oldEpcotPhoto,
 });
+
+const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == "true";
+
+console.log(visualEditingEnabled);
 
 const defaultDescription = "Once Upon A Wish Travel";
 
@@ -32,14 +37,13 @@ const { title, description = defaultDescription } = Astro.props;
 		<link rel='sitemap' href='/sitemap-index.xml' />
 
 		<!-- Google tag (gtag.js) -->
-		<script is:inline type='text/partytown' async src='https://www.googletagmanager.com/gtag/js?id=G-W6LDP1M78E'></script>
-		<script is:inline type='text/partytown'>
+		<script type='text/partytown' is:inline async src='https://www.googletagmanager.com/gtag/js?id=G-W6LDP1M78E'></script>
+		<script is:inline type='text/partytown' async>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
 			}
 			gtag("js", new Date());
-
 			gtag("config", "G-W6LDP1M78E");
 		</script>
 
@@ -62,7 +66,7 @@ const { title, description = defaultDescription } = Astro.props;
 		<!-- Meta Tags Generated via https://www.opengraph.xyz -->
 
 		<title>{title}</title>
-		<ViewTransitions />
+		<!-- <ViewTransitions /> -->
 	</head>
 	<body>
 		<span class='bg-filter'></span>
@@ -72,7 +76,9 @@ const { title, description = defaultDescription } = Astro.props;
 			</header>
 			<main class='container mx-auto px-4'>
 				<slot />
+				<VisualEditing enabled={visualEditingEnabled} />
 			</main>
+
 			<Footer />
 		</span>
 

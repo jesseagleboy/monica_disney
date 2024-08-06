@@ -2,9 +2,10 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel/static";
+import vercel from "@astrojs/vercel/serverless";
+import sanity from "@sanity/astro";
+import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
-import vercel from "@astrojs/vercel/static";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,9 +19,21 @@ export default defineConfig({
 		partytown({
 			config: {
 				forward: ["dataLayer.push"],
+				debug: true,
 			},
 		}),
+		sanity({
+			projectId: "gwwfkmev",
+			dataset: "production",
+			apiVersion: "2024-08-05",
+			useCdn: false,
+			studioBasePath: "/studio",
+			stega: {
+				studioUrl: "/studio",
+			},
+		}),
+		react(),
 	],
-	output: "static",
+	output: "server",
 	adapter: vercel(),
 });
