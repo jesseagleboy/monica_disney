@@ -65,7 +65,7 @@ const { title, description = defaultDescription } = Astro.props;
 		<!-- Meta Tags Generated via https://www.opengraph.xyz -->
 
 		<title>{title}</title>
-		<!-- <ViewTransitions /> -->
+		<ViewTransitions />
 	</head>
 	<body>
 		<span class='bg-filter'></span>
@@ -75,9 +75,7 @@ const { title, description = defaultDescription } = Astro.props;
 			</header>
 			<main class='container mx-auto px-4'>
 				<slot />
-				<VisualEditing enabled={visualEditingEnabled} />
 			</main>
-
 			<Footer />
 		</span>
 
@@ -117,5 +115,6 @@ const { title, description = defaultDescription } = Astro.props;
 				backdrop-filter: blur(10px);
 			}
 		</style>
+		<VisualEditing enabled={visualEditingEnabled} />
 	</body>
 </html>
