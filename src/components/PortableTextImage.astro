@@ -1,14 +1,26 @@
 ---
 // ./src/components/PortableTextImage.astro
+import { Image } from "astro:assets";
 import { urlForImage } from "../sanitymonicadisneysite/lib/urlForImage";
 
-const { asset, alt } = Astro.props.node;
+const { asset, alt, title, height, width, alignment } = Astro.props.node;
 
 const url = urlForImage(asset).url();
 const webpUrl = urlForImage(asset).format("webp").url();
+
+// This is needed because for the live editor, there is a zero-width-space at the end of the alt text
+let getAlignment: "flex-start" | "center" | "flex-end" = "flex-start"
+if (alignment.includes("center")) {
+	getAlignment = "center"
+} else if (alignment.includes("end")) {
+	getAlignment = "flex-end"
+}
+// end of note
+
+
 ---
 
-<picture>
+<picture class="flex" style={{justifyContent: getAlignment}}>
 	<source srcset={webpUrl} type='image/webp' />
-	<img class='responsive__img' src={url} alt={alt} />
+	<Image class='responsive__img' src={url} alt={alt} title={title} inferSize width={width} />
 </picture>

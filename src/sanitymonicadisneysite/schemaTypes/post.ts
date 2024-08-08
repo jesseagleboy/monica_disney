@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import markdown from './markdown'
 
 export default defineType({
   name: 'post',
@@ -48,7 +49,7 @@ export default defineType({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
-    }),
+    } ),
   ],
 
   preview: {
