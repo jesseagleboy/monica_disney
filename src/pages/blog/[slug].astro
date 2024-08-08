@@ -22,7 +22,7 @@ export const getStaticPaths = (async () => {
 
 const { params } = Astro;
 
-const { data: post } = await loadQuery<{ title: string; body: any[] }>({
+const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt: string; _updatedAt: string }>({
 	query: `*[_type == "post" && slug.current == $slug][0]`,
 	params,
 });
@@ -30,7 +30,17 @@ const { data: post } = await loadQuery<{ title: string; body: any[] }>({
 
 <Layout title={post.title} description={post.title}>
 	<h1 class='text-3xl text-center'>{post.title}</h1>
-	<div class='prose' style={{maxWidth: '100%'}}>
+	<div class='prose' style={{ maxWidth: "100%" }}>
 		<PortableText portableText={post.body} />
 	</div>
+	<hr class="my-4" />
+
+	<span class="font-mono text-xs">
+		<div>
+			<datetime datetime={post._updatedAt}>Updated At: {new Date(post._updatedAt).toLocaleString()}</datetime>
+		</div>
+		<div>
+			<datetime datetime={post.publishedAt}>Published At: {new Date(post.publishedAt).toLocaleString()}</datetime>
+		</div>
+	</span>
 </Layout>
