@@ -28,7 +28,7 @@ const { data: post } = await loadQuery<{ title: string; body: any[] }>({
 });
 ---
 
-<Layout title={post.title}>
+<Layout title={post.title} description={post.title}>
 	<h1 class='text-3xl text-center'>{post.title}</h1>
 	<div class='prose' style={{maxWidth: '100%'}}>
 		<PortableText portableText={post.body} />
