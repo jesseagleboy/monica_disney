@@ -1,0 +1,60 @@
+---
+export const prerender = true
+import Layout from "@/layouts/Layout.astro";
+import { loadQuery } from "@/sanitymonicadisneysite/lib/load-query";
+import { urlForImage } from "@/sanitymonicadisneysite/lib/urlForImage";
+import { Image } from "astro:assets";
+
+interface PostObject {
+	title: string;
+	slug: string;
+	mainImage: any;
+	publishedAt: string;
+	excerpt: string;
+}
+
+const { data: posts } = await loadQuery<PostObject[]>({
+	query: `*[_type == "post"]{
+    title,
+    "slug": slug.current,
+    mainImage,
+    publishedAt,
+    "excerpt": array::join(string::split((pt::text(body)), "")[0..255], "") + "...",
+    }`,
+});
+---
+
+<Layout title='Magical Monica Posts' description='Magical Adventures By Monica Posts'>
+	<h1 class='text-3xl text-center'>Pixie Posts</h1>
+
+	<ul class="flex flex-col gap-5">
+		{
+			posts.map((post: any) => {
+				const urlImage = urlForImage(post.mainImage);
+				const url = urlImage.url();
+				const webpUrl = urlImage.format("webp").url();
+				console.log(url);
+				return (
+					<li class='link-card'>
+						<a href={`/blog/${post.slug}`} class='flex gap-5 items-center flex-wrap'>
+							<picture>
+								<source srcset={webpUrl} type='image/webp' />
+								<Image class='responsive__img' src={url} alt='image' width={300} height={300} class='rounded-3xl' />
+							</picture>
+							<div>
+								<h2>
+									{post.title}
+									<span>&rarr;</span>
+								</h2>
+								<div class='prose'>
+									<p>{post.excerpt}</p>
+								</div>
+								<sub>{new Date(post.publishedAt).toLocaleString()}</sub>
+							</div>
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</Layout>
