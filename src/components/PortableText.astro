@@ -4,9 +4,11 @@ import { PortableText as PortableTextInternal } from "astro-portabletext";
 import PortableTextImage from "./PortableTextImage.astro";
 const { portableText } = Astro.props;
 
+console.log(portableText)
 const components = {
 	type: {
 		image: PortableTextImage,
+
 	},
 };
 ---

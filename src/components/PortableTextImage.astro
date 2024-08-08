@@ -3,7 +3,10 @@
 import { Image } from "astro:assets";
 import { urlForImage } from "../sanitymonicadisneysite/lib/urlForImage";
 
-const { asset, alt, title, height, width, alignment } = Astro.props.node;
+console.log(Astro.props)
+
+
+const { asset, alt, title, width, alignment } = Astro.props.node;
 
 const url = urlForImage(asset).url();
 const webpUrl = urlForImage(asset).format("webp").url();
