@@ -5,6 +5,7 @@ import type { GetStaticPaths } from "astro";
 import { loadQuery } from "@/sanitymonicadisneysite/lib/load-query";
 import type { SanityDocument } from "@sanity/client";
 import PortableText from "@/components/PortableText.astro";
+import FireworksButton from "@/components/FireworksButton.astro";
 
 export const getStaticPaths = (async () => {
 	const { data: posts } = await loadQuery<SanityDocument[]>({
@@ -33,9 +34,12 @@ const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt
 	<div class='prose' style={{ maxWidth: "100%" }}>
 		<PortableText portableText={post.body} />
 	</div>
-	<hr class="my-4" />
+	<div class="p-4 ps-0">
+		<FireworksButton />
+	</div>
+	<hr class='my-4' />
 
-	<span class="font-mono text-xs">
+	<span class='font-mono text-xs'>
 		<div>
 			<datetime datetime={post._updatedAt}>Updated At: {new Date(post._updatedAt).toLocaleString()}</datetime>
 		</div>
