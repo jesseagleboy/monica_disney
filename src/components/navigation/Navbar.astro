@@ -21,12 +21,6 @@ import themeArray from "@/functions/themeArray";
 		</ul>
 	</div>
 	<div class='navbar-end flex gap-5'>
-		<!-- <details class='dropdown'>
-			<summary class='btn btn-xs sm:btn-sm m-1'>Theme</summary>
-			<ul class='menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow'>
-				{themeArray.map(theme => <li id={`theme-${theme}`}>{theme}</li>)}
-			</ul>
-		</details> -->
 		<select data-choose-theme transition:persist>
 			{
 				themeArray.map(theme => (
@@ -39,3 +33,24 @@ import themeArray from "@/functions/themeArray";
 		<a class='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg' href='https://www.onceuponawishtravel.com/monica-defosse'>Start Trip</a>
 	</div>
 </div>
+
+<script is:inline>
+	function setTheme() {
+		// ☝️ This script prevent the FART effect.
+		if (localStorage.getItem("theme") === null) {
+			document.documentElement.setAttribute("data-theme", "light");
+		} else document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
+		// "theme" LocalStorage value is set by the package to remember user preference.
+		// The value is checked and applyed before rendering anything.
+	}
+
+	setTheme();
+
+	document.addEventListener("astro:after-swap", () => {
+		setTheme();
+	});
+</script>
+<script>
+	import { themeChange } from "theme-change";
+	themeChange();
+</script>
