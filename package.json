@@ -48,6 +48,7 @@
 		"sass": "^1.77.8",
 		"styled-components": "^6.1.12",
 		"tailwindcss": "^3.4.9",
+		"theme-change": "^2.5.0",
 		"typescript": "^5.5.4",
 		"vercel": "^35.2.3"
 	},

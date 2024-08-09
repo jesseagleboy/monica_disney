@@ -1,5 +1,6 @@
 ---
 import NavDirectoryLayout from "./NavDirectoryLayout.astro";
+import themeArray from "@/functions/themeArray";
 ---
 
 <div class='navbar bg-base-100'>
@@ -19,7 +20,22 @@ import NavDirectoryLayout from "./NavDirectoryLayout.astro";
 			<NavDirectoryLayout />
 		</ul>
 	</div>
-	<div class='navbar-end'>
+	<div class='navbar-end flex gap-5'>
+		<!-- <details class='dropdown'>
+			<summary class='btn btn-xs sm:btn-sm m-1'>Theme</summary>
+			<ul class='menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow'>
+				{themeArray.map(theme => <li id={`theme-${theme}`}>{theme}</li>)}
+			</ul>
+		</details> -->
+		<select data-choose-theme transition:persist>
+			{
+				themeArray.map(theme => (
+					<option value={theme} data-act-class='ACTIVECLASS'>
+						{theme}
+					</option>
+				))
+			}
+		</select>
 		<a class='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg' href='https://www.onceuponawishtravel.com/monica-defosse'>Start Trip</a>
 	</div>
 </div>

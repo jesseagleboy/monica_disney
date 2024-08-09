@@ -31,7 +31,7 @@ const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt
 
 <Layout title={post.title} description={post.title}>
 	<h1 class='text-3xl text-center'>{post.title}</h1>
-	<div class='prose' style={{ maxWidth: "100%" }}>
+	<div class='prose' style={{ maxWidth: "100%" }} transition:name="main-box">
 		<PortableText portableText={post.body} />
 	</div>
 	<div class="p-4 ps-0">

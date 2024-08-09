@@ -12,9 +12,9 @@ interface Props {
 	description?: string;
 }
 
-const optimizedImage = await getImage({
-	src: oldEpcotPhoto,
-});
+// const optimizedImage = await getImage({
+// 	src: oldEpcotPhoto,
+// });
 
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == "true";
 
@@ -24,7 +24,7 @@ const { title, description = defaultDescription } = Astro.props;
 ---
 
 <!doctype html>
-<html lang='en'>
+<html lang='en' data-theme='cupcake'>
 	<head>
 		<meta charset='UTF-8' />
 		<meta name='description' content={description} />
@@ -63,7 +63,6 @@ const { title, description = defaultDescription } = Astro.props;
 		<meta name='twitter:image' content='https://magicaladventuresbymonica.com/monica_og_image.jpeg' />
 
 		<!-- Meta Tags Generated via https://www.opengraph.xyz -->
-
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
@@ -99,22 +98,33 @@ const { title, description = defaultDescription } = Astro.props;
 					monospace;
 			}
 		</style>
-		<style lang='scss' define:vars={{ bgSrc: `url(${optimizedImage.src})` }}>
+		<style lang='scss'>
 			@view-transition {
 				navigation: auto; /* enabled! */
-			}
-
-			html {
-				background-image: var(--bgSrc);
-				background-attachment: fixed;
-				background-size: cover;
-				background-position: center;
 			}
 
 			.container {
 				backdrop-filter: blur(10px);
 			}
 		</style>
-		<VisualEditing enabled={true} zIndex={1000}/>
+		<VisualEditing enabled={true} zIndex={1000} />
+		<script is:inline>
+			function setTheme() {
+				// ☝️ This script prevent the FART effect.
+				if (localStorage.getItem("theme") === null) {
+					document.documentElement.setAttribute("data-theme", "light");
+				} else document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
+				// "theme" LocalStorage value is set by the package to remember user preference.
+				// The value is checked and applyed before rendering anything.
+			}
+
+			setTheme();
+
+			document.addEventListener("astro:after-swap", setTheme);
+		</script>
+		<script>
+			import { themeChange } from "theme-change";
+			themeChange();
+		</script>
 	</body>
 </html>
