@@ -19,6 +19,7 @@ export default defineType({
         source: 'title',
         maxLength: 96,
       },
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'author',
@@ -33,6 +34,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      validation: rule => rule.required(),
     }),
     defineField({
       name: 'categories',
