@@ -31,20 +31,20 @@ const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt
 
 <Layout title={post.title} description={post.title}>
 	<h1 class='text-3xl text-center'>{post.title}</h1>
-	<div class='prose' style={{ maxWidth: "100%" }} transition:name="main-box">
+	<div class='prose' style={{ maxWidth: "100%" }} transition:name='main-box'>
 		<PortableText portableText={post.body} />
 	</div>
-	<div class="p-4 ps-0">
+	<div class='p-4 ps-0'>
 		<FireworksButton />
 	</div>
 	<hr class='my-4' />
 
 	<span class='font-mono text-xs'>
-		<div>
-			<time datetime={post._updatedAt}>Updated At: {new Date(post._updatedAt).toLocaleString()}</time>
-		</div>
-		<div>
-			<datetime datetime={post.publishedAt}>Published At: {new Date(post.publishedAt).toLocaleString()}</datetime>
-		</div>
+		<p><b>Last Updated:</b> <time datetime={post._updatedAt}>{new Date(post._updatedAt).toLocaleDateString("default", {
+			dateStyle: "long",
+		})}</time></p>
+		<p><b>Published:</b> <time datetime={post.publishedAt}>{new Date(post.publishedAt).toLocaleDateString("default", {
+			dateStyle: "long",
+		})}</time></p>
 	</span>
 </Layout>
