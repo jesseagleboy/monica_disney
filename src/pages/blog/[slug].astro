@@ -41,7 +41,7 @@ const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt
 
 	<span class='font-mono text-xs'>
 		<div>
-			<datetime datetime={post._updatedAt}>Updated At: {new Date(post._updatedAt).toLocaleString()}</datetime>
+			<time datetime={post._updatedAt}>Updated At: {new Date(post._updatedAt).toLocaleString()}</time>
 		</div>
 		<div>
 			<datetime datetime={post.publishedAt}>Published At: {new Date(post.publishedAt).toLocaleString()}</datetime>
