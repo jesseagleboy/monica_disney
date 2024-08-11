@@ -1,4 +1,5 @@
 ---
+import BreadCrumbsSetup from "./BreadCrumbsSetup.astro"
 import NavDirectoryLayout from "./NavDirectoryLayout.astro";
 import ThemeSelector from "./ThemeSelector.astro";
 ---
@@ -15,10 +16,11 @@ import ThemeSelector from "./ThemeSelector.astro";
 		</div>
 		<a class='btn shrink sm:shrink-0 btn-ghost sm:text-xl' href='/' transition:name='icon-nav'>Magical Adventures By Monica</a>
 	</div>
-	<div class='navbar-center hidden lg:flex'>
+	<div class='navbar-center hidden lg:flex flex-col'>
 		<ul class='menu menu-horizontal px-1'>
 			<NavDirectoryLayout />
 		</ul>
+		<BreadCrumbsSetup />
 	</div>
 	<div class='navbar-end flex gap-5'>
 		<ThemeSelector />

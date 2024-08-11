@@ -1,0 +1,10 @@
+//https://docs.astro-breadcrumbs.kasimir.dev/styling/scss-api/
+@use "astro-breadcrumbs/breadcrumbs.scss" with (
+  $bem-root: "c-breadcrumbs",
+  $color-is-current: green,
+  $icons-not-bigger-than-font-size: true,
+  $size-font: 0.7rem,
+  $transition-link-breadcrumbs: all 0.3s ease,
+  $color-hover-link: blue,
+);
+
