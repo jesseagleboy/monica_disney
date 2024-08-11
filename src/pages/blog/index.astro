@@ -14,7 +14,7 @@ interface PostObject {
 }
 
 const { data: posts } = await loadQuery<PostObject[]>({
-	query: `*[_type == "post"]{
+	query: `*[_type == "post"] | order(publishedAt desc) {
     title,
     "slug": slug.current,
     mainImage,
