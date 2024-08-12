@@ -1,0 +1,38 @@
+---
+
+
+
+
+interface Props {
+    title: string;
+    description: string;
+    image?: string;
+    url?: string;
+}
+
+const {
+    title = "Monica DeFosse - Once Upon A Wish Travel",
+    description = "Making your magical adventures come alive!",
+    image = "https://magicaladventuresbymonica.com/monica_og_image.jpeg",
+    url = Astro.url.href,
+} = Astro.props
+
+---
+
+<!-- Facebook Meta Tags -->
+<meta property='og:url' content={url} />
+<meta property='og:type' content='website' />
+<meta property='og:title' content={title} />
+<meta property='og:description' content={description} />
+<meta property='og:image' content={image} />
+<meta property='og:site_name' content='Magical Adventures By Monica' />
+
+<!-- Twitter Meta Tags -->
+<meta name='twitter:card' content='summary_large_image' />
+<meta property='twitter:domain' content='magicaladventuresbymonica.com' />
+<meta property='twitter:url' content={url} />
+<meta name='twitter:title' content={title} />
+<meta name='twitter:description' content={description} />
+<meta name='twitter:image' content={image} />
+
+<!-- Meta Tags Generated via https://www.opengraph.xyz -->

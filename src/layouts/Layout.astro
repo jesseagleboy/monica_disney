@@ -6,10 +6,13 @@ import { getImage } from "astro:assets";
 import "../styles/style.scss";
 import Navbar from "@/components/navigation/Navbar.astro";
 import { VisualEditing } from "@sanity/astro/visual-editing";
+import OpenGraphComponent from "@/components/navigation/OpenGraphComponent.astro";
 
 interface Props {
 	title: string;
-	description?: string;
+	description: string;
+	url?: string;
+	image?: string;
 }
 
 // const optimizedImage = await getImage({
@@ -20,7 +23,7 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
 
 const defaultDescription = "Once Upon A Wish Travel";
 
-const { title, description = defaultDescription } = Astro.props;
+const { title, description = defaultDescription, url = "https://magicaladventuresbymonica.com/", image = "https://magicaladventuresbymonica.com/monica_og_image.jpeg" } = Astro.props;
 ---
 
 <!doctype html>
@@ -46,23 +49,7 @@ const { title, description = defaultDescription } = Astro.props;
 			gtag("config", "G-W6LDP1M78E");
 		</script>
 
-		<!-- Facebook Meta Tags -->
-		<meta property='og:url' content='https://magicaladventuresbymonica.com/' />
-		<meta property='og:type' content='website' />
-		<meta property='og:title' content='Monica DeFosse - Once Upon A Wish Travel' />
-		<meta property='og:description' content='Making your magical adventures come alive!' />
-		<meta property='og:image' content='https://magicaladventuresbymonica.com/monica_og_image.jpeg' />
-		<meta property='og:site_name' content='Magical Adventures By Monica' />
-
-		<!-- Twitter Meta Tags -->
-		<meta name='twitter:card' content='summary_large_image' />
-		<meta property='twitter:domain' content='magicaladventuresbymonica.com' />
-		<meta property='twitter:url' content='https://magicaladventuresbymonica.com/' />
-		<meta name='twitter:title' content='Monica DeFosse - Once Upon A Wish Travel' />
-		<meta name='twitter:description' content='Monica DeFosse - Once Upon A Wish Travel' />
-		<meta name='twitter:image' content='https://magicaladventuresbymonica.com/monica_og_image.jpeg' />
-
-		<!-- Meta Tags Generated via https://www.opengraph.xyz -->
+		<OpenGraphComponent title={title} description={description} url={url} image={image} />
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>

@@ -6,10 +6,11 @@ import { loadQuery } from "@/sanitymonicadisneysite/lib/load-query";
 import type { SanityDocument } from "@sanity/client";
 import PortableText from "@/components/PortableText.astro";
 import FireworksButton from "@/components/FireworksButton.astro";
+import { urlForImage } from "@/sanitymonicadisneysite/lib/urlForImage";
 
 export const getStaticPaths = (async () => {
 	const { data: posts } = await loadQuery<SanityDocument[]>({
-		query: `*[_type == "post"]`,
+		query: `*[_type == "post" && (!(_id in path("drafts.**")) && publishedAt != null)]`,
 	});
 
 	const routes = posts.map(({ slug }) => ({
@@ -23,13 +24,15 @@ export const getStaticPaths = (async () => {
 
 const { params } = Astro;
 
-const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt: string; _updatedAt: string }>({
+const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt: string; _updatedAt: string; mainImage: any }>({
 	query: `*[_type == "post" && slug.current == $slug][0]`,
 	params,
 });
+
+const imageURL = urlForImage(post.mainImage.asset).url();
 ---
 
-<Layout title={post.title} description={post.title}>
+<Layout title={post.title} description={post.title} image={imageURL}>
 	<h1 class='text-3xl text-center'>{post.title}</h1>
 	<div class='prose' style={{ maxWidth: "100%" }} transition:name='main-box'>
 		<PortableText portableText={post.body} />
@@ -40,11 +43,25 @@ const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt
 	<hr class='my-4' />
 
 	<span class='font-mono text-xs'>
-		<p><b>Last Updated:</b> <time datetime={post._updatedAt}>{new Date(post._updatedAt).toLocaleDateString("default", {
-			dateStyle: "long",
-		})}</time></p>
-		<p><b>Published:</b> <time datetime={post.publishedAt}>{new Date(post.publishedAt).toLocaleDateString("default", {
-			dateStyle: "long",
-		})}</time></p>
+		<p>
+			<b>Last Updated:</b>
+			<time datetime={post._updatedAt}
+				>{
+					new Date(post._updatedAt).toLocaleDateString("default", {
+						dateStyle: "long",
+					})
+				}</time
+			>
+		</p>
+		<p>
+			<b>Published:</b>
+			<time datetime={post.publishedAt}
+				>{
+					new Date(post.publishedAt).toLocaleDateString("default", {
+						dateStyle: "long",
+					})
+				}</time
+			>
+		</p>
 	</span>
 </Layout>
