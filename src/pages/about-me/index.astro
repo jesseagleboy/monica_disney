@@ -6,9 +6,11 @@ import TextSection from "@/layouts/TextSection.astro";
 
 const post = await getEntry("about-me", "about-me");
 const { Content } = await post?.render();
+
+
 ---
 
-<Layout title='Monica DeFosse - About Me'>
+<Layout title='Monica DeFosse - About Me' description="Hello Dreamers! I'm Monica and here's why I love helping you plan all your special magical adventures.">
 	
 		<TextSection>
 			<Content slot='content-area' />
