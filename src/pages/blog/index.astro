@@ -13,8 +13,9 @@ interface PostObject {
 	excerpt: string;
 }
 
+// Query will be to get all posts that are published and not in drafts. The order is by published date in descending (most recent update) order.
 const { data: posts } = await loadQuery<PostObject[]>({
-	query: `*[_type == "post"] | order(publishedAt desc) {
+	query: `*[_type == "post" && (!(_id in path("drafts.**")) && publishedAt != null)] | order(publishedAt desc) {
     title,
     "slug": slug.current,
     mainImage,
