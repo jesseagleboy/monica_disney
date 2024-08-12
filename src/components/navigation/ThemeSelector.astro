@@ -2,10 +2,10 @@
 import themeArray from "@/functions/themeArray";
 ---
 
-<select data-choose-theme transition:persist>
+<select data-choose-theme transition:persist class='select'>
 	{
 		themeArray.map(theme => (
-			<option value={theme} data-act-class='ACTIVECLASS'>
+			<option value={theme} disabled={theme.includes("Choose")} data-act-class='ACTIVECLASS'>
 				{theme}
 			</option>
 		))
