@@ -32,7 +32,7 @@ const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt
 const imageURL = urlForImage(post.mainImage.asset).url();
 ---
 
-<Layout title={post.title} description={post.title} image={imageURL}>
+<Layout title={post.title} description={post.title} image={imageURL} url={Astro.url.href}>
 	<h1 class='text-3xl text-center'>{post.title}</h1>
 	<div class='prose' style={{ maxWidth: "100%" }} transition:name='main-box'>
 		<PortableText portableText={post.body} />
