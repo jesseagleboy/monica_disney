@@ -1,22 +1,22 @@
 ---
-
-
-
-
 interface Props {
-    title: string;
-    description: string;
-    image?: string;
-    url?: string;
+	title: string;
+	description: string;
+	image?: string;
+	url?: string;
 }
 
-const {
-    title = "Monica DeFosse - Once Upon A Wish Travel Agent",
-    description = "Making your magical adventures come alive!",
-    image = "https://magicaladventuresbymonica.com/monica_og_image.jpeg",
-    url = Astro.url.href,
-} = Astro.props
+/* You can generate this image URL dynamically: https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/{site_text}/{title_text}/{image_url}/og.png
+  Replace the variables in the brackets with your own values and use this URL in the image tag below this comment. Ensure values are URL encoded.
+  For more information, read: https://www.opengraph.xyz/blog/how-to-implement-dynamic-open-graph-images
+  */
 
+/* "https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/magicaladventuresbymonica.com/Monica%20DeFosse%20-%20Once%20Upon%20A%20Wish%20Travel/https%3A%2F%2Fmagicaladventuresbymonica.com%2Fmonica_og_image.jpeg/og.png"
+ */
+
+const { title = "Monica DeFosse - Once Upon A Wish Travel Agent", description = "Making your magical adventures come alive!", image = "https://magicaladventuresbymonica.com/monica_og_image.jpeg", url = Astro.url.href } = Astro.props;
+
+const dynamic = encodeURI(`https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/magicaladventuresbymonica.com/${title}/${image}/og.png`);
 ---
 
 <!-- Facebook Meta Tags -->
@@ -24,7 +24,7 @@ const {
 <meta property='og:type' content='website' />
 <meta property='og:title' content={title} />
 <meta property='og:description' content={description} />
-<meta property='og:image' content={image} />
+<meta property='og:image' content={dynamic} />
 <meta property='og:site_name' content='Magical Adventures By Monica' />
 
 <!-- Twitter Meta Tags -->
@@ -33,6 +33,6 @@ const {
 <meta property='twitter:url' content={url} />
 <meta name='twitter:title' content={title} />
 <meta name='twitter:description' content={description} />
-<meta name='twitter:image' content={image} />
+<meta name='twitter:image' content={dynamic} />
 
 <!-- Meta Tags Generated via https://www.opengraph.xyz -->
