@@ -12,6 +12,9 @@ import netlify from "@astrojs/netlify";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://magicaladventuresbymonica.com/",
+	server: {
+		open: true,
+	},
 	integrations: [
 		tailwind({
 			applyBaseStyles: false,
