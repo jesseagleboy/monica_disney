@@ -13,7 +13,7 @@ import themeArray from "@/functions/themeArray";
 		{
 			themeArray.map(theme => (
 				<li>
-					<input type='radio' name='theme-dropdown' class='theme-controller btn btn-sm btn-block btn-ghost justify-start checked:bg-none' aria-label={theme} value={theme} transition:persist onclick="localStorage.setItem('theme', this.value);" />
+					<input id={theme} type='radio' name='theme-dropdown' class='theme-controller btn btn-sm btn-block btn-ghost justify-start checked:bg-none' aria-label={theme} value={theme} transition:persist onclick="localStorage.setItem('theme', this.value);" />
 				</li>
 			))
 		}
@@ -25,11 +25,14 @@ import themeArray from "@/functions/themeArray";
 		// ☝️ This script prevent the FART effect.
 		if (localStorage.getItem("theme") === null) {
 			document.documentElement.setAttribute("data-theme", "light");
-		} else document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
-		// "theme" LocalStorage value is set by the package to remember user preference.
-		// The value is checked and applyed before rendering anything.
-	}
+		} else {
+			document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
+		}
 
+		// check the one that is selected on load, get the element by id
+		const selectedTheme = document.querySelector("[value=" + localStorage.getItem("theme") + "]");
+		selectedTheme.checked = true;
+	}
 	setTheme();
 
 	document.addEventListener("astro:after-swap", () => {
