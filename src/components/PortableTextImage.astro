@@ -10,7 +10,6 @@ const webpUrl = urlForImage(asset).format("webp").url();
 
 // This is needed because for the live editor, there is a zero-width-space at the end of the alt text
 let getAlignment: "flex-start" | "center" | "flex-end" = "flex-start";
-console.log(alignment, 'alignment')
 if (alignment.includes("center")) {
 	getAlignment = "center";
 } else if (alignment.includes("end")) {
