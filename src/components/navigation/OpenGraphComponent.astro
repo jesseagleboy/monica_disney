@@ -1,4 +1,5 @@
 ---
+import { stegaClean } from "@sanity/client/stega";
 interface Props {
 	title: string;
 	description: string;
@@ -16,11 +17,11 @@ interface Props {
 
 const { title = "Monica DeFosse - Once Upon A Wish Travel Agent", description = "Making your magical adventures come alive!", image = "https://magicaladventuresbymonica.com/monica_og_image.jpeg", url = Astro.url.href } = Astro.props;
 
-//image = "https%3A%2F%2Fmagicaladventuresbymonica.com%2Fmonica_og_image.jpeg";
+const encodedTitle = encodeURIComponent(stegaClean(Astro.url.href));
+const encodedDescription = encodeURIComponent(stegaClean(description));
+const encodedImageURL = encodeURIComponent(stegaClean(image) + "?h=500&w=500"); // height is used to reduce image size for image generator or it will not render
 
-const encodedTitle = encodeURIComponent(title);
-const encodedImage = encodeURIComponent(image);
-const dynamic = `https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/magicaladventuresbymonica.com/${encodedTitle}/${encodedImage}/og.png`;
+const dynamic = `https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/${encodedTitle}/${encodedDescription}/${encodedImageURL}/og.png`;
 ---
 
 <!-- Facebook Meta Tags -->
