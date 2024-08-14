@@ -7,6 +7,8 @@ import "../styles/style.scss";
 import Navbar from "@/components/navigation/Navbar.astro";
 import { VisualEditing } from "@sanity/astro/visual-editing";
 import OpenGraphComponent from "@/components/navigation/OpenGraphComponent.astro";
+import { pwaInfo } from "virtual:pwa-info";
+import ReloadPrompt from "../components/ReloadPrompt.astro";
 
 interface Props {
 	title: string;
@@ -14,10 +16,6 @@ interface Props {
 	url?: string;
 	image?: string;
 }
-
-// const optimizedImage = await getImage({
-// 	src: oldEpcotPhoto,
-// });
 
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == "true";
 
@@ -50,8 +48,9 @@ const { title, description = defaultDescription, url = "https://magicaladventure
 		</script>
 
 		<OpenGraphComponent title={title} description={description} url={url} image={image} />
+		{pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
 		<title>{title}</title>
-		<slot name="json-ld" />
+		<slot name='json-ld' />
 		<ViewTransitions />
 	</head>
 	<body>
@@ -96,5 +95,6 @@ const { title, description = defaultDescription, url = "https://magicaladventure
 			}
 		</style>
 		<VisualEditing enabled={true} zIndex={1000} />
+		<ReloadPrompt />
 	</body>
 </html>

@@ -6,6 +6,7 @@ import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
 import netlify from "@astrojs/netlify";
+import AstroPWA from '@vite-pwa/astro'
 
 // https://astro.build/config
 export default defineConfig({
@@ -36,6 +37,16 @@ export default defineConfig({
 			},
 		}),
 		react(),
+		AstroPWA({
+			registerType: "autoUpdate",
+			workbox: { navigateFallback: '/404' },
+			devOptions: {
+				enabled: true,
+			},
+			manifest: {
+				theme_color: "#ffffff",
+			}
+		}),
 	],
 	output: "hybrid",
 	adapter: netlify(),

@@ -30,3 +30,4 @@ pnpm-debug.log*
 .vscode
 .netlify
 .prettierrc
+dev-dist/

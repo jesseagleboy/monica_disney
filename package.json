@@ -49,14 +49,15 @@
 		"styled-components": "^6.1.12",
 		"tailwindcss": "^3.4.10",
 		"theme-change": "^2.5.0",
-		"typescript": "^5.5.4",
-		"vercel": "^35.2.4"
+		"typescript": "^5.5.4"
 	},
 	"devDependencies": {
 		"@types/bun": "^1.1.6",
 		"@types/canvas-confetti": "^1.6.4",
 		"@types/cssesc": "^3.0.2",
 		"@types/html-escaper": "^3.0.2",
+		"@vite-pwa/assets-generator": "^0.2.4",
+		"@vite-pwa/astro": "^0.4.0",
 		"daisyui": "^4.12.10",
 		"fluid-tailwind": "^1.0.3",
 		"postcss-html": "^1.7.0",
