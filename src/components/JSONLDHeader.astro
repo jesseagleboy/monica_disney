@@ -1,0 +1,45 @@
+---
+
+ type dataType = "NewsArticle"
+
+
+interface Props {
+    type: dataType;
+    headline: string;
+    image: string[];
+    datePublished: string;
+    dateModified: string;
+    author?: {
+        "@type": "Person";
+        name: string;
+        url: string;
+    }[];
+}
+
+const defaultAuthor = {
+    "@type": "Person",
+    name: "Monica DeFosse",
+    url: "https://magicaladventuresbymonica.com/about-me",
+    image: "https://magicaladventuresbymonica.com/.netlify/images?url=_astro%2Fmonica.BLSwrN0P.jpeg&w=305",
+}
+
+
+const { type = "NewsArticle", headline, image, datePublished, dateModified, author = [defaultAuthor] } = Astro.props;
+
+
+const jsonLDObject = {
+		"@context": "https://schema.org",
+		"@type": type,
+		"headline": headline,
+		"image": image,
+		"datePublished": datePublished,
+		"dateModified": dateModified,
+		"author": author
+	}
+
+const stringedJSONLDObject = JSON.stringify(jsonLDObject);
+
+---
+
+<script is:inline type='application/ld+json' set:html={stringedJSONLDObject}>
+</script>

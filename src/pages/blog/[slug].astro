@@ -7,6 +7,7 @@ import type { SanityDocument } from "@sanity/client";
 import PortableText from "@/components/PortableText.astro";
 import FireworksButton from "@/components/FireworksButton.astro";
 import { urlForImage } from "@/sanitymonicadisneysite/lib/urlForImage";
+import JSONLDHeader from "@/components/JSONLDHeader.astro"
 
 export const getStaticPaths = (async () => {
 	const { data: posts } = await loadQuery<SanityDocument[]>({
@@ -33,6 +34,7 @@ const imageURL = urlForImage(post.mainImage.asset).url();
 ---
 
 <Layout title={post.title} description={post.title} image={imageURL} url={Astro.url.href}>
+	<JSONLDHeader slot="json-ld" type="NewsArticle" headline={post.title} image={[imageURL]} datePublished={post.publishedAt} dateModified={post._updatedAt}  />
 	<h1 class='text-3xl text-center'>{post.title}</h1>
 	<div class='prose' style={{ maxWidth: "100%" }} transition:name='main-box'>
 		<PortableText portableText={post.body} />

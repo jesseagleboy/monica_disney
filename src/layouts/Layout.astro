@@ -51,6 +51,7 @@ const { title, description = defaultDescription, url = "https://magicaladventure
 
 		<OpenGraphComponent title={title} description={description} url={url} image={image} />
 		<title>{title}</title>
+		<slot name="json-ld" />
 		<ViewTransitions />
 	</head>
 	<body>
