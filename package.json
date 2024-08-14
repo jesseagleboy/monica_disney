@@ -5,9 +5,10 @@
 	"scripts": {
 		"dev": "bun --bun astro dev --host",
 		"start": "bun --bun astro dev",
-		"build": "astro check && bun --bun astro build",
+		"build": "astro check && bun --bun astro build; pwa-assets-generator --preset minimal-2023 public/favicon.svg",
 		"preview": "bun astro preview --host",
-		"astro": "astro"
+		"astro": "astro",
+		"generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/favicon.svg"
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.2",
