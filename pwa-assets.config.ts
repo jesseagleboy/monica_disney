@@ -1,9 +1,5 @@
-import { defineConfig, minimalPreset as preset } from '@vite-pwa/assets-generator/config'
+import { defineConfig } from "@vite-pwa/assets-generator/config";
 
 export default defineConfig({
-  preset,
-  images: [
-    'public/logo.svg',
-    'public-dev/logo.svg'
-  ]
-})
+	images: ["public/logo.svg", "public-dev/logo.svg"],
+});

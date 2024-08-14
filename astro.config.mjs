@@ -39,10 +39,8 @@ export default defineConfig({
 		AstroPWA({
 			includeAssets: ["favicon.svg"],
 			registerType: "autoUpdate",
-			workbox: { navigateFallback: "/404", globPatterns: ["**/*.{css,js,html,svg,png,ico,txt}"] },
 			devOptions: {
 				enabled: true,
-				navigateFallbackAllowlist: [/^\//],
 			},
 			manifest: {
 				name: "Magical Adventures by Monica",
@@ -73,9 +71,6 @@ export default defineConfig({
 						purpose: "maskable",
 					},
 				],
-			},
-			experimental: {
-				directoryAndTrailingSlashHandler: true,
 			},
 		}),
 	],
