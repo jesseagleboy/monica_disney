@@ -6,7 +6,7 @@ import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
 import netlify from "@astrojs/netlify";
-import AstroPWA from '@vite-pwa/astro'
+import AstroPWA from "@vite-pwa/astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,14 +38,34 @@ export default defineConfig({
 		}),
 		react(),
 		AstroPWA({
+			includeAssets: ["favicon.svg"],
 			registerType: "autoUpdate",
-			workbox: { navigateFallback: '/404' },
+			workbox: { navigateFallback: "/404", globPatterns: ["**/*.{css,js,html,svg,png,ico,txt}"] },
 			devOptions: {
 				enabled: true,
+				navigateFallbackAllowlist: [/^\//],
 			},
 			manifest: {
+				name: "Magical Adventures by Monica",
+				short_name: "Monica Magic Adventures",
+				description: "Monica DeFosse - Once Upon A Wish Travel",
 				theme_color: "#ffffff",
-			}
+				icons: [
+					{
+						src: "favicon.svg",
+						sizes: "192x192",
+						type: "image/png",
+					},
+					{
+						src: "favicon.svg",
+						sizes: "512x512",
+						type: "image/png",
+					},
+				],
+			},
+			experimental: {
+				directoryAndTrailingSlashHandler: true,
+			},
 		}),
 	],
 	output: "hybrid",
