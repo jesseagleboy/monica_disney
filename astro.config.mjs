@@ -2,11 +2,9 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-// import vercel from "@astrojs/vercel/serverless";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
-
 import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
