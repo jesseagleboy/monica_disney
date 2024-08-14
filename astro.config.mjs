@@ -36,43 +36,45 @@ export default defineConfig({
 			},
 		}),
 		react(),
-		AstroPWA({
-			includeAssets: ["favicon.svg"],
-			registerType: "autoUpdate",
-			devOptions: {
-				enabled: true,
-			},
-			manifest: {
-				name: "Magical Adventures by Monica",
-				short_name: "Monica Magic Adventures",
-				description: "Monica DeFosse - Once Upon A Wish Travel",
-				theme_color: "#ffffff",
-				icons: [
-					{
-						src: "pwa-64x64.png",
-						sizes: "64x64",
-						type: "image/png",
-					},
-					{
-						src: "pwa-192x192.png",
-						sizes: "192x192",
-						type: "image/png",
-					},
-					{
-						src: "pwa-512x512.png",
-						sizes: "512x512",
-						type: "image/png",
-						purpose: "any",
-					},
-					{
-						src: "maskable-icon-512x512.png",
-						sizes: "512x512",
-						type: "image/png",
-						purpose: "maskable",
-					},
-				],
-			},
-		}),
+		AstroPWA(
+			// {
+			// includeAssets: ["favicon.svg"],
+			// registerType: "autoUpdate",
+			// devOptions: {
+			// 	enabled: true,
+			// },
+			// manifest: {
+			// 	name: "Magical Adventures by Monica",
+			// 	short_name: "Monica Magic Adventures",
+			// 	description: "Monica DeFosse - Once Upon A Wish Travel",
+			// 	theme_color: "#ffffff",
+			// 	icons: [
+			// 		{
+			// 			src: "pwa-64x64.png",
+			// 			sizes: "64x64",
+			// 			type: "image/png",
+			// 		},
+			// 		{
+			// 			src: "pwa-192x192.png",
+			// 			sizes: "192x192",
+			// 			type: "image/png",
+			// 		},
+			// 		{
+			// 			src: "pwa-512x512.png",
+			// 			sizes: "512x512",
+			// 			type: "image/png",
+			// 			purpose: "any",
+			// 		},
+			// 		{
+			// 			src: "maskable-icon-512x512.png",
+			// 			sizes: "512x512",
+			// 			type: "image/png",
+			// 			purpose: "maskable",
+			// 		},
+			// 	],
+			// },
+			// }
+		),
 	],
 	output: "hybrid",
 	adapter: netlify(),
