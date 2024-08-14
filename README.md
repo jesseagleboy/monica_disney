@@ -1,5 +1,8 @@
 # Astro Starter Kit: Basics
 
+#### Website Status:
+ [![Netlify Status](https://api.netlify.com/api/v1/badges/b58c08b7-f165-4c69-9d2e-08e5e23b4416/deploy-status)](https://app.netlify.com/sites/magicaladventuresbymonica/deploys)
+
 ```sh
 npm create astro@latest -- --template basics
 ```
