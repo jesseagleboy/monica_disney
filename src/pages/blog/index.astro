@@ -1,8 +1,11 @@
 ---
 export const prerender = true;
+import createStarterMetaTags from "@/functions/createStarterMetaTags";
+import type { StarterMetaTagProps as InputProps } from "@/functions/createStarterMetaTags";
 import Layout from "@/layouts/Layout.astro";
 import { loadQuery } from "@/sanitymonicadisneysite/lib/load-query";
 import { urlForImage } from "@/sanitymonicadisneysite/lib/urlForImage";
+import type { SEOProps } from "astro-seo";
 import { Image } from "astro:assets";
 
 interface PostObject {
@@ -23,9 +26,26 @@ const { data: posts } = await loadQuery<PostObject[]>({
     "excerpt": array::join(string::split((pt::text(body)), "")[0..255], "") + "...",
     }`,
 });
+
+const objectToPlace: InputProps = {
+	title: "Monica's Pixie Posts",
+	description: "Stay up to date with the latest posts from me!",
+	url: Astro.url.href,
+	mainSite: Astro.url.origin,
+	imageURL: "https://magicaladventuresbymonica.com" + "/monica_og_image.jpeg",
+	imageAlt: "Monica DeFosse - Once Upon A Wish Travel Photo",
+	openGraph: {
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+	},
+};
+
+const SEO: SEOProps = createStarterMetaTags(objectToPlace);
 ---
 
-<Layout title='Magical Monica Posts' description="Keep up to date with Monica's latest magical news!" url={Astro.url.href}>
+<Layout userSEOProps={SEO}>
 	<h1 class='text-3xl text-center'>Magical Monica Posts</h1>
 
 	<ul class='flex flex-col gap-5 p-4' transition:name='main-box'>

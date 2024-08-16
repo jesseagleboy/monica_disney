@@ -7,7 +7,14 @@ interface Props {
 const { error } = Astro.props;
 ---
 
-<Layout title='Server Error - 500' description={error instanceof Error ? error.message : "Unknown error"}>
+<Layout
+	userSEOProps={{
+		nofollow: true,
+		noindex: true,
+		title: "Server error",
+		description: error instanceof Error ? error.message : "Unknown error",
+	}}
+>
 	<h1>Server error</h1>
 	<p>{error instanceof Error ? error.message : "Unknown error"}</p>
 </Layout>

@@ -2,7 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title='404 - Page Not Found' description='The page you are looking for could not be found. Please check the URL and try again.'>
+<Layout
+	userSEOProps={{
+		nofollow: true,
+		noindex: true,
+		title: "404 - Page Not Found",
+		description: "Page Not Found",
+	}}
+>
 	<main>
 		<section>
 			<article id='article-section' transition:name='main-box'>
@@ -25,11 +32,11 @@ import Layout from "../layouts/Layout.astro";
 		text-align: center;
 	}
 
-    h1 {
-        font-size: 3rem;
-        font-weight: bold;
-        color: red;
-    }
+	h1 {
+		font-size: 3rem;
+		font-weight: bold;
+		color: red;
+	}
 
 	#article-section {
 		display: flex;

@@ -3,17 +3,40 @@ export const prerender = true;
 import { getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import TextSection from "@/layouts/TextSection.astro";
+import createStarterMetaTags from "@/functions/createStarterMetaTags";
+import type { SEOProps } from "astro-seo";
+import type { StarterMetaTagProps as InputProps } from "@/functions/createStarterMetaTags";
 
 const post = await getEntry("about-me", "about-me");
 const { Content } = await post?.render();
 
+const objectToPlace: InputProps = {
+	title: "Magical Adventures By Monica",
+	description: "Monica DeFosse - About Me",
+	url: "https://magicaladventuresbymonica.com/about-me",
+	mainSite: "https://magicaladventuresbymonica.com",
+	imageURL: "https://magicaladventuresbymonica.com" + "/monica_og_image.jpeg",
+	imageAlt: "Monica DeFosse - About Me Photo",
+	openGraph: {
+		type: "website",
+	},
+	twitter: {
+		card: "summary_large_image",
+	},
+};
 
+const SEO: ReturnType<typeof createStarterMetaTags> = createStarterMetaTags(objectToPlace);
+
+const extensions: SEOProps = {
+	...SEO,
+	extend: {
+		meta: [{ name: "og:logo", content: "magicaladventuresbymonica.com" + "/monica_og_image.jpeg" + "?w=300" }],
+	},
+};
 ---
 
-<Layout title='Monica DeFosse - About Me' description="Hello Dreamers! I'm Monica and here's why I love helping you plan all your special magical adventures." url={Astro.url.href}>
-	
-		<TextSection>
-			<Content slot='content-area' />
-		</TextSection>
-	
+<Layout userSEOProps={extensions}>
+	<TextSection>
+		<Content slot='content-area' />
+	</TextSection>
 </Layout>

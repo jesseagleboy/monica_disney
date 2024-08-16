@@ -1,5 +1,4 @@
 import {defineField, defineType} from 'sanity'
-import markdown from './markdown'
 
 export default defineType({
   name: 'post',
