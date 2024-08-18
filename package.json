@@ -13,7 +13,11 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.3",
+<<<<<<< HEAD
 		"@astrojs/mdx": "3.1.4",
+=======
+		"@astrojs/mdx": "3.1.3",
+>>>>>>> a4eebed (package upgrade)
 		"@astrojs/netlify": "^5.5.1",
 		"@astrojs/partytown": "^2.1.1",
 		"@astrojs/react": "^3.6.2",
@@ -43,7 +47,11 @@
 		"astro-seo-schema": "^4.0.2",
 		"canvas-confetti": "^1.9.3",
 		"easymde": "^2.18.0",
+<<<<<<< HEAD
 		"fulldev-ui": "^0.3.34",
+=======
+		"fulldev-ui": "^0.3.32",
+>>>>>>> a4eebed (package upgrade)
 		"netlify": "^13.1.20",
 		"netlify-cli": "^17.34.2",
 		"purgecss": "^6.0.0",
