@@ -8,7 +8,6 @@ import { getEntry } from "astro:content";
 import type { Props as SEOProps } from "astro-seo";
 import createStarterMetaTags from "@/functions/createStarterMetaTags";
 import type { StarterMetaTagProps as InputProps } from "@/functions/createStarterMetaTags";
-import { Schema } from "astro-seo-schema"
 
 const introList = await getEntry("intro", "intro");
 
