@@ -10,7 +10,7 @@ import AstroPWA from "@vite-pwa/astro";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://magicaladventuresbymonica.com/",
+	site: "https://www.magicaladventuresbymonica.com/",
 	server: {
 		open: true,
 	},
