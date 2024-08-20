@@ -28,7 +28,7 @@ export default defineConfig({
 		sanity({
 			projectId: "gwwfkmev",
 			dataset: "production",
-			apiVersion: "2024-08-05",
+			apiVersion: "2024-08-20",
 			useCdn: false,
 			studioBasePath: "/studio",
 			stega: {
