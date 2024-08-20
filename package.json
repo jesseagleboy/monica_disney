@@ -49,6 +49,7 @@
 		"easymde": "^2.18.0",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"fulldev-ui": "^0.3.34",
 =======
 		"fulldev-ui": "^0.3.32",
@@ -56,6 +57,9 @@
 =======
 		"fulldev-ui": "^0.3.33",
 >>>>>>> 84079be (package update)
+=======
+		"fulldev-ui": "^0.3.34",
+>>>>>>> 510658b (package update)
 		"netlify": "^13.1.20",
 		"netlify-cli": "^17.34.2",
 		"purgecss": "^6.0.0",
