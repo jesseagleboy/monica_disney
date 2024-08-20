@@ -44,7 +44,7 @@ export default defineConfig({
 			// },
 			manifest: {
 				name: "Magical Adventures by Monica",
-				short_name: "Monica Magic Adventures",
+				short_name: "Magical Adventures by Monica",
 				description: "Monica DeFosse - Once Upon A Wish Travel",
 				theme_color: "#ffffff",
 				icons: [
