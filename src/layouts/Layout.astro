@@ -5,6 +5,7 @@ import "../styles/style.scss";
 import Navbar from "@/components/navigation/Navbar.astro";
 import { VisualEditing } from "@sanity/astro/visual-editing";
 import { pwaInfo } from "virtual:pwa-info";
+import { pwaAssetsHead } from "virtual:pwa-assets/head";
 import { SEO } from "astro-seo";
 import type { SEOProps } from "astro-seo";
 // import ReloadPrompt from "../components/ReloadPrompt.astro";
@@ -12,13 +13,10 @@ import type { SEOProps } from "astro-seo";
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == "true";
 
 interface Props {
-	userSEOProps: SEOProps
+	userSEOProps: SEOProps;
 }
 
-const { userSEOProps }  = Astro.props;
-
-
-
+const { userSEOProps } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,13 +24,10 @@ const { userSEOProps }  = Astro.props;
 	<head>
 		<meta charset='UTF-8' />
 		<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
-		<meta name='theme-color' content='#ffffff' />
-		<link rel='icon' href='/favicon.ico' sizes='48x48' />
-		<link rel='icon' href='/favicon.svg' sizes='any' type='image/svg+xml' />
-		<link rel='apple-touch-icon' href='/apple-touch-icon-180x180.png' />
 		<meta name='generator' content={Astro.generator} />
+		{pwaAssetsHead.themeColor && <meta name='theme-color' content={pwaAssetsHead.themeColor.content} />}
+		{pwaAssetsHead.links.map(link => <link {...link} />)}
 		<link rel='sitemap' href='/sitemap-index.xml' />
-
 		<!-- Google tag (gtag.js) -->
 		<script is:inline type='text/partytown' async src='https://www.googletagmanager.com/gtag/js?id=G-W6LDP1M78E'></script>
 		<script is:inline type='text/partytown'>

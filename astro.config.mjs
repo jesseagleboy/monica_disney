@@ -38,10 +38,11 @@ export default defineConfig({
 		react(),
 		AstroPWA({
 			// includeAssets: ["favicon.svg"],
-			// registerType: "autoUpdate",
-			// devOptions: {
-			// 	enabled: true,
-			// },
+			registerType: "autoUpdate",
+			devOptions: {
+				enabled: true,
+			},
+			workbox: { navigateFallback: '/404' },
 			manifest: {
 				name: "Magical Adventures by Monica",
 				short_name: "Magical Adventures by Monica",
