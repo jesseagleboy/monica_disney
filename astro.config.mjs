@@ -37,12 +37,15 @@ export default defineConfig({
 		}),
 		react(),
 		AstroPWA({
-			// includeAssets: ["favicon.svg"],
+			includeAssets: ["favicon.svg"],
 			registerType: "autoUpdate",
 			devOptions: {
 				enabled: true,
 			},
-			workbox: { navigateFallback: '/404' },
+			workbox: {
+				navigateFallback: "/404",
+				globPatterns: ["**/*.{css,js,html,svg,png,ico,txt}"],
+			},
 			manifest: {
 				name: "Magical Adventures by Monica",
 				short_name: "Magical Adventures by Monica",
@@ -72,6 +75,9 @@ export default defineConfig({
 						purpose: "maskable",
 					},
 				],
+			},
+			pwaAssets: {
+				config: true,
 			},
 		}),
 	],
