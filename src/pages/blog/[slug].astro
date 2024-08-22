@@ -12,6 +12,7 @@ import createStarterMetaTags from "@/functions/createStarterMetaTags";
 import type { StarterMetaTagProps as InputProps } from "@/functions/createStarterMetaTags";
 import type { SEOProps } from "astro-seo";
 import { stegaClean } from "@sanity/client/stega";
+import PortableTextImage from "@/components/PortableTextImage.astro";
 
 export const getStaticPaths = (async () => {
 	const { data: posts } = await loadQuery<SanityDocument[]>({
@@ -97,6 +98,7 @@ const extensions: SEOProps = {
 		}}
 	/>
 	<h1 class='text-3xl text-center'>{post.title}</h1>
+	<PortableTextImage imageInput={{ ...post.mainImage, alignment: "center", headTransitionName: post.title }} />
 	<div class='prose' style={{ maxWidth: "100%" }} transition:name='main-box'>
 		<PortableText portableText={post.body} />
 	</div>

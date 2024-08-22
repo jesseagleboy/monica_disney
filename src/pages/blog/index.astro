@@ -1,5 +1,6 @@
 ---
 export const prerender = true;
+import PortableTextImage from "@/components/PortableTextImage.astro";
 import createStarterMetaTags from "@/functions/createStarterMetaTags";
 import type { StarterMetaTagProps as InputProps } from "@/functions/createStarterMetaTags";
 import Layout from "@/layouts/Layout.astro";
@@ -57,10 +58,7 @@ const SEO: SEOProps = createStarterMetaTags(objectToPlace);
 				return (
 					<li class='link-card w-fit hover:outline hover:rounded-xl p-2'>
 						<a href={`/blog/${post.slug}`} class='flex gap-5 items-center flex-wrap'>
-							<picture>
-								<source srcset={webpUrl} type='image/webp' />
-								<Image class='responsive__img' src={url} alt='image' width={300} height={300} class='rounded-3xl' />
-							</picture>
+							<PortableTextImage imageInput={{ ...post.mainImage, alignment: "center", headTransitionName: post.title }} class="rounded-3xl"/>
 							<div>
 								<h2>
 									{post.title}

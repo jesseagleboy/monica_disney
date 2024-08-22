@@ -3,22 +3,30 @@
 import { Image } from "astro:assets";
 import { urlForImage } from "../sanitymonicadisneysite/lib/urlForImage";
 
-const { asset, alt, title, width, alignment = "flex-start" } = Astro.props.node;
+const node = Astro.props.node || Astro.props.imageInput;
+const textStyleClass = Astro.props.class;
 
-const url = urlForImage(asset).url();
-const webpUrl = urlForImage(asset).format("webp").url();
+const url = urlForImage(node.asset).url();
+const webpUrl = urlForImage(node.asset).format("webp").url();
 
 // This is needed because for the live editor, there is a zero-width-space at the end of the alt text
-let getAlignment: "flex-start" | "center" | "flex-end" = "flex-start";
-if (alignment.includes("center")) {
+let getAlignment: "flex-start" | "center" | "flex-end" = node.alignment || "flex-start";
+
+if (node?.alignment?.includes("center")) {
 	getAlignment = "center";
-} else if (alignment.includes("end")) {
+} else if (node?.alignment?.includes("end")) {
 	getAlignment = "flex-end";
 }
 // end of note
+
+const doTransition = node.headTransitionName
+	? {
+			transition: "main-image-transition" + node.headTransitionName,
+		}
+	: {};
 ---
 
-<picture class='flex' style={{ justifyContent: getAlignment }}>
+<picture class='flex' style={{ justifyContent: getAlignment }} {...doTransition}>
 	<source srcset={webpUrl} type='image/webp' />
-	<Image class='responsive__img' src={url} alt={alt} title={title} inferSize width={width} />
+	<Image class='responsive__img' src={url} alt={node.alt || "Alt image"} title={node.title} inferSize width={node.width || 500} class={textStyleClass} />
 </picture>
