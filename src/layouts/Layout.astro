@@ -27,7 +27,7 @@ const { userSEOProps } = Astro.props;
 		<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
 		<meta name='generator' content={Astro.generator} />
 		<!-- Google Consent Tag -->
-		<script is:inline>
+		<script is:inline type="text/partytown">
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
@@ -47,7 +47,7 @@ const { userSEOProps } = Astro.props;
 		</script>
 		<!-- End Google Consent Tag -->
 		<!-- Google Tag Manager -->
-		<script is:inline>
+		<script is:inline type="text/partytown">
 			(function (w, d, s, l, i) {
 				w[l] = w[l] || [];
 				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
