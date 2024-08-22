@@ -8,6 +8,7 @@ import { pwaInfo } from "virtual:pwa-info";
 import { pwaAssetsHead } from "virtual:pwa-assets/head";
 import { SEO } from "astro-seo";
 import type { SEOProps } from "astro-seo";
+import GoogleConsentBanner from "@/components/GoogleConsentBanner.astro";
 // import ReloadPrompt from "../components/ReloadPrompt.astro";
 
 const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == "true";
@@ -25,8 +26,28 @@ const { userSEOProps } = Astro.props;
 		<meta charset='UTF-8' />
 		<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
 		<meta name='generator' content={Astro.generator} />
+		<!-- Google Consent Tag -->
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			if (localStorage.getItem("consentMode") === null) {
+				gtag("consent", "default", {
+					ad_user_data: "denied",
+					ad_personalization: "denied",
+					ad_storage: "denied",
+					analytics_storage: "denied",
+					wait_for_update: 500,
+				});
+			} else {
+				gtag("consent", "default", JSON.parse(localStorage.getItem("consentMode")));
+			}
+			dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+		</script>
+		<!-- End Google Consent Tag -->
 		<!-- Google Tag Manager -->
-		<script is:inline type='text/partytown'>
+		<script is:inline>
 			(function (w, d, s, l, i) {
 				w[l] = w[l] || [];
 				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
@@ -50,7 +71,7 @@ const { userSEOProps } = Astro.props;
 	</head>
 	<body>
 		<!-- Google Tag Manager (noscript) -->
-		<noscript> <iframe src='https://www.googletagmanager.com/ns.html?id=GTM-NF3RVNHX' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+		<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-NF3RVNHX' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 		<span class='bg-filter'></span>
 		<span class='flex flex-col justify-between h-dvh'>
@@ -94,5 +115,6 @@ const { userSEOProps } = Astro.props;
 		</style>
 		<VisualEditing enabled={visualEditingEnabled} zIndex={1000} />
 		<!-- <ReloadPrompt /> -->
+		<GoogleConsentBanner />
 	</body>
 </html>
