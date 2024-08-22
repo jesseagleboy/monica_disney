@@ -16,7 +16,7 @@
 	</div>
 </div>
 
-<script is:inline>
+<script is:inline async defer>
 	function hideBanner() {
 		document.getElementById("cookie-consent-banner").style.display = "none";
 	}
@@ -60,6 +60,9 @@
 			analytics_storage: consent.analytics ? "granted" : "denied",
 			personalization_storage: consent.preferences ? "granted" : "denied",
 		};
+		function gtag() {
+			dataLayer.push(arguments);
+		}
 		gtag("consent", "update", consentMode);
 		localStorage.setItem("consentMode", JSON.stringify(consentMode));
 	}
