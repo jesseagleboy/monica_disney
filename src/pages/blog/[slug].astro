@@ -35,9 +35,9 @@ const { data: post } = await loadQuery<{ title: string; body: any[]; publishedAt
 	params,
 });
 
-const imageURL = urlForImage(post.mainImage.asset).url();
+const imageURL = urlForImage(post.mainImage.asset).width(600).url();
 
-// const cleanTitle = stegaClean(post.title);
+const cleanTitle = stegaClean(post.title);
 
 const objectToPlace: InputProps = {
 	title: "Magical Adventures By Monica",
@@ -98,8 +98,8 @@ const extensions: SEOProps = {
 		}}
 	/>
 	<h1 class='text-3xl text-center'>{post.title}</h1>
-	<PortableTextImage imageInput={{ ...post.mainImage, alignment: "center", headTransitionName: post.title }} />
-	<div class='prose' style={{ maxWidth: "100%" }} transition:name='main-box'>
+	<PortableTextImage imageInput={{ ...post.mainImage, alignment: "center", headTransitionName: cleanTitle }}/>
+	<div class='prose' style={{ maxWidth: "100%" }} transition:name={'main-box' + cleanTitle}>
 		<PortableText portableText={post.body} />
 	</div>
 	<div class='p-4 ps-0'>
