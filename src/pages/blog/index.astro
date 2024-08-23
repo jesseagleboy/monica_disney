@@ -57,7 +57,7 @@ const SEO: SEOProps = createStarterMetaTags(objectToPlace);
 						<a href={`/blog/${post.slug}`} class='flex gap-5 items-center flex-wrap'>
 							<PortableTextImage imageInput={{ ...post.mainImage, alignment: "center", headTransitionName: cleanTitle, width: 300 }} class='rounded-3xl' />
 							<div>
-								<h2>
+								<h2 transition:name={"main-title-" + cleanTitle}>
 									{post.title}
 									<span>&rarr;</span>
 								</h2>
