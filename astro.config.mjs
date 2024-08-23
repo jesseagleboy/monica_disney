@@ -32,7 +32,7 @@ export default defineConfig({
 			projectId: "gwwfkmev",
 			dataset: "production",
 			apiVersion: "2024-08-20",
-			useCdn: false,
+			useCdn: true,
 			studioBasePath: "/studio",
 			stega: {
 				studioUrl: "/studio",
