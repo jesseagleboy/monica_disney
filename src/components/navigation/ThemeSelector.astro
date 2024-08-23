@@ -24,12 +24,14 @@ import themeArray from "@/functions/themeArray";
 	function setTheme() {
 		// ☝️ This script prevent the FART effect.
 		if (localStorage.getItem("theme") === null) {
-			document.documentElement.setAttribute("data-theme", "light");
+			const initialColor = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+			document.documentElement.setAttribute("data-theme", initialColor);
+			const selectedTheme = document.querySelector("[value =" + initialColor + "]");
+			selectedTheme.checked = true;
 		} else {
 			document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
 			// check the one that is selected on load, get the element by id
 			const selectedTheme = document.querySelector("[value =" + localStorage.getItem("theme") + "]");
-			console.log(selectedTheme, "theme on load");
 			selectedTheme.checked = true;
 		}
 	}
