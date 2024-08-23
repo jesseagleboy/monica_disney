@@ -3,15 +3,36 @@
 import { Image } from "astro:assets";
 import { urlForImage } from "../sanitymonicadisneysite/lib/urlForImage";
 
+interface Props {
+	type?: "thumbnail" | "in-article";
+	class?: string;
+	node?: any;
+	imageInput?: any;
+}
+
 const node = Astro.props.node || Astro.props.imageInput;
 const textStyleClass = Astro.props.class;
+const imageType = Astro.props.type || "in-article";
 
 const imageURL = urlForImage(node.asset);
 
-let lowestWidth = node.width > 600 ? node.width : 600;
+/* This section creates a conditional if a width is set. For thumbnails, this setup allows an image to be smaller but Sanity will still call in a higher resolution photo. For in-article, the width and image resolution will be as set in the editor itself. */
+let lowestWidth = node.width > 600 && imageType === "thumbnail" ? node.width : 600;
 
-const url = imageURL.width(node.width).url();
-const webpUrl = imageURL.format("webp").width(lowestWidth).url();
+let imageSrc = null;
+if (node.width) {
+	imageSrc = imageURL.width(node.width).url();
+} else {
+	imageSrc = imageURL.url();
+}
+
+let webpUrl = null;
+if (node.width) {
+	webpUrl = imageURL.width(lowestWidth).format("webp").url();
+} else {
+	webpUrl = imageURL.format("webp").url();
+}
+// end of image resolution and width setup
 
 // This is needed because for the live editor, there is a zero-width-space at the end of the alt text
 let getAlignment: "flex-start" | "center" | "flex-end" = node.alignment || "flex-start";
@@ -32,5 +53,5 @@ const doTransition = node.headTransitionName
 
 <picture class='flex' style={{ justifyContent: getAlignment }} {...doTransition}>
 	<source srcset={webpUrl} type='image/webp' />
-	<Image class='responsive__img' src={url} alt={node.alt || "Alt image"} title={node.title} inferSize class={textStyleClass} />
+	<Image class='responsive__img' src={imageSrc} alt={node.alt || "Alt image"} title={node.title} inferSize class={textStyleClass} />
 </picture>
