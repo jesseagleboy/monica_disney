@@ -29,7 +29,7 @@ const { data: posts } = await loadQuery<PostObject[]>({
 });
 
 const objectToPlace: InputProps = {
-	title: "Monica's Pixie Posts",
+	title: "Magical Monica Posts",
 	description: "Stay up to date with the latest posts from me!",
 	url: Astro.url.href,
 	mainSite: Astro.url.origin,
@@ -52,13 +52,10 @@ const SEO: SEOProps = createStarterMetaTags(objectToPlace);
 	<ul class='flex flex-col gap-5 p-4' transition:name='main-box'>
 		{
 			posts.map((post: any) => {
-				const urlImage = urlForImage(post.mainImage);
-				const url = urlImage.url();
-				const webpUrl = urlImage.format("webp").url();
 				return (
 					<li class='link-card w-fit hover:outline hover:rounded-xl p-2'>
 						<a href={`/blog/${post.slug}`} class='flex gap-5 items-center flex-wrap'>
-							<PortableTextImage imageInput={{ ...post.mainImage, alignment: "center", headTransitionName: post.title }} class="rounded-3xl"/>
+							<PortableTextImage imageInput={{ ...post.mainImage, alignment: "center", headTransitionName: post.title, width: 300 }} class='rounded-3xl' />
 							<div>
 								<h2>
 									{post.title}
