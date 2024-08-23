@@ -27,6 +27,7 @@ import themeArray from "@/functions/themeArray";
 			const initialColor = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 			document.documentElement.setAttribute("data-theme", initialColor);
 			const selectedTheme = document.querySelector("[value =" + initialColor + "]");
+			localStorage.setItem("theme", initialColor);
 			selectedTheme.checked = true;
 		} else {
 			document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
