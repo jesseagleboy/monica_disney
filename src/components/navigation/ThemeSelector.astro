@@ -20,20 +20,20 @@ import themeArray from "@/functions/themeArray";
 	</ul>
 </div>
 
-<script is:inline async defer>
+<script>
 	function setTheme() {
 		// ☝️ This script prevent the FART effect.
 		if (localStorage.getItem("theme") === null) {
 			const initialColor = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 			document.documentElement.setAttribute("data-theme", initialColor);
-			const selectedTheme = document.querySelector("[value =" + initialColor + "]");
+			const selectedTheme = document.querySelector<HTMLInputElement>("[value =" + initialColor + "]");
 			localStorage.setItem("theme", initialColor);
-			selectedTheme.checked = true;
+			selectedTheme && (selectedTheme.checked = true);
 		} else {
-			document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
+			document.documentElement.setAttribute("data-theme", localStorage.getItem("theme")!);
 			// check the one that is selected on load, get the element by id
-			const selectedTheme = document.querySelector("[value =" + localStorage.getItem("theme") + "]");
-			selectedTheme.checked = true;
+			const selectedTheme = document.querySelector<HTMLInputElement>("[value =" + localStorage.getItem("theme") + "]");
+			selectedTheme && (selectedTheme.checked = true);
 		}
 	}
 	setTheme();
