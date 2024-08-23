@@ -16,43 +16,58 @@
 	</div>
 </div>
 
-<script is:inline async defer>
+<script>
 	function hideBanner() {
-		document.getElementById("cookie-consent-banner").style.display = "none";
+		const banner = document.getElementById("cookie-consent-banner");
+		if (banner) {
+			banner.style.display = "none";
+		}
 	}
 
 	if (localStorage.getItem("consentMode") === null) {
-		document.getElementById("btn-accept-all").addEventListener("click", function () {
-			setConsent({
-				necessary: true,
-				analytics: true,
-				preferences: true,
-				marketing: true,
+		const btnAcceptAll = document.getElementById("btn-accept-all");
+		if (btnAcceptAll) {
+			btnAcceptAll.addEventListener("click", function () {
+				setConsent({
+					necessary: true,
+					analytics: true,
+					preferences: true,
+					marketing: true,
+				});
+				hideBanner();
 			});
-			hideBanner();
-		});
-		document.getElementById("btn-accept-some").addEventListener("click", function () {
-			setConsent({
-				necessary: true,
-				analytics: document.getElementById("consent-analytics").checked,
-				preferences: document.getElementById("consent-preferences").checked,
-				marketing: document.getElementById("consent-marketing").checked,
+		}
+		const btnAcceptSome = document.getElementById("btn-accept-some");
+		if (btnAcceptSome) {
+			btnAcceptSome.addEventListener("click", function () {
+				setConsent({
+					necessary: true,
+					analytics: (document.getElementById("consent-analytics") as HTMLInputElement).checked,
+					preferences: (document.getElementById("consent-preferences") as HTMLInputElement).checked,
+					marketing: (document.getElementById("consent-marketing") as HTMLInputElement).checked,
+				});
+				hideBanner();
 			});
-			hideBanner();
-		});
-		document.getElementById("btn-reject-all").addEventListener("click", function () {
-			setConsent({
-				necessary: false,
-				analytics: false,
-				preferences: false,
-				marketing: false,
+		}
+		const btnRejectAll = document.getElementById("btn-reject-all");
+		if (btnRejectAll) {
+			btnRejectAll.addEventListener("click", function () {
+				setConsent({
+					necessary: false,
+					analytics: false,
+					preferences: false,
+					marketing: false,
+				});
+				hideBanner();
 			});
-			hideBanner();
-		});
-		document.getElementById("cookie-consent-banner").style.display = "block";
+		}
+		const cookieConsentBanner = document.getElementById("cookie-consent-banner");
+		if (cookieConsentBanner) {
+			cookieConsentBanner.style.display = "block";
+		}
 	}
 
-	function setConsent(consent) {
+	function setConsent(consent: { necessary: boolean; analytics: boolean; preferences: boolean; marketing: boolean }) {
 		const consentMode = {
 			functionality_storage: consent.necessary ? "granted" : "denied",
 			security_storage: consent.necessary ? "granted" : "denied",
@@ -60,9 +75,12 @@
 			analytics_storage: consent.analytics ? "granted" : "denied",
 			personalization_storage: consent.preferences ? "granted" : "denied",
 		};
+
 		function gtag() {
+			// @ts-ignore
 			dataLayer.push(arguments);
 		}
+		// @ts-ignore
 		gtag("consent", "update", consentMode);
 		localStorage.setItem("consentMode", JSON.stringify(consentMode));
 	}
