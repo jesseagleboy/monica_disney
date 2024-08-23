@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /studio
 
 Sitemap: https://magicaladventuresbymonica.com/sitemap-index.xml
+Sitemap: https://www.magicaladventuresbymonica.com/sitemap-index.xml
+Host: magicaladventuresbymonica.com
