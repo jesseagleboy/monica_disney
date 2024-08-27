@@ -43,15 +43,9 @@ if (node?.alignment?.includes("center")) {
 	getAlignment = "flex-end";
 }
 // end of note
-
-const doTransition = node.headTransitionName
-	? {
-			transition: "main-image-transition" + node.headTransitionName,
-		}
-	: {};
 ---
 
-<picture class='flex' style={{ justifyContent: getAlignment }}>
+<picture class='flex' style={{ justifyContent: getAlignment }} transition:name={"image-" + node.headTransitionName}>
 	<source srcset={webpUrl} type='image/webp' />
 	<Image class='responsive__img' src={imageSrc} alt={node.alt || "Alt image"} title={node.title} inferSize class={textStyleClass} />
 </picture>
