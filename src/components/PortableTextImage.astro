@@ -45,7 +45,7 @@ if (node?.alignment?.includes("center")) {
 // end of note
 ---
 
-<picture class='flex' style={{ justifyContent: getAlignment }} transition:name={"image-" + node.headTransitionName}>
+<picture class='flex' style={{ justifyContent: getAlignment }} transition:name={"image-" + (node.headTransitionName || node.alt)}>
 	<source srcset={webpUrl} type='image/webp' />
 	<Image class='responsive__img' src={imageSrc} alt={node.alt || "Alt image"} title={node.title} inferSize class={textStyleClass} />
 </picture>
