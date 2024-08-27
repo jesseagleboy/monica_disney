@@ -40,7 +40,7 @@ const imageURL = urlForImage(post.mainImage.asset).width(600).url();
 const cleanTitle = stegaClean(post.title);
 
 const objectToPlace: InputProps = {
-	title: "Magical Adventures By Monica",
+	title: cleanTitle,
 	description: post.title,
 	url: Astro.url.href,
 	mainSite: Astro.url.origin,
@@ -83,7 +83,7 @@ const extensions: SEOProps = {
 		slot='json-ld'
 		item={{
 			"@context": "https://schema.org",
-			"@type": "NewsArticle",
+			"@type": "Article",
 			headline: post.title,
 			image: [imageURL],
 			datePublished: post.publishedAt,
