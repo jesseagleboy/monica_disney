@@ -21,7 +21,9 @@ export default defineConfig({
 			applyBaseStyles: false,
 		}),
 		mdx(),
-		sitemap(),
+		sitemap( {
+			lastmod: new Date(),
+		}),
 		partytown({
 			config: {
 				forward: ["dataLayer.push"],
