@@ -33,7 +33,6 @@ const { userSEOProps } = Astro.props;
 		{pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
 		<slot name='json-ld' />
 		<slot name='seo' />
-		<!-- <script src='/src/pwa.ts'></script> -->
 		<!-- Google Consent Tag -->
 		<script is:inline type='text/partytown'>
 			window.dataLayer = window.dataLayer || [];
