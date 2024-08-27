@@ -13,9 +13,9 @@ const { Content } = await post?.render();
 const objectToPlace: InputProps = {
 	title: "About Me",
 	description: "Learn about where my love for Disney and travel comes from and how I can support you in your journey!",
-	url: "https://magicaladventuresbymonica.com/about-me",
-	mainSite: "https://magicaladventuresbymonica.com",
-	imageURL: "https://magicaladventuresbymonica.com" + "/monica_og_image.jpeg",
+	url: Astro.url.href,
+	mainSite: Astro.url.origin,
+	imageURL: Astro.url.origin + "/monica_og_image.jpeg",
 	imageAlt: "Monica DeFosse - About Me Photo",
 	openGraph: {
 		type: "website",
