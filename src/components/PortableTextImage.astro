@@ -1,6 +1,6 @@
 ---
 // ./src/components/PortableTextImage.astro
-import { Image } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 import { urlForImage } from "../sanitymonicadisneysite/lib/urlForImage";
 
 interface Props {
@@ -18,13 +18,6 @@ const imageURL = urlForImage(node.asset);
 
 /* This section creates a conditional if a width is set. For thumbnails, this setup allows an image to be smaller but Sanity will still call in a higher resolution photo. For in-article, the width and image resolution will be as set in the editor itself. */
 let lowestWidth = node.width > 600 && imageType === "thumbnail" ? node.width : 600;
-
-let imageSrc = null;
-if (node.width) {
-	imageSrc = imageURL.width(node.width).url();
-} else {
-	imageSrc = imageURL.url();
-}
 
 let webpUrl = null;
 if (node.width) {
@@ -45,7 +38,4 @@ if (node?.alignment?.includes("center")) {
 // end of note
 ---
 
-<picture class='flex' style={{ justifyContent: getAlignment }} transition:name={"image-" + (node.headTransitionName || node.alt)}>
-	<source srcset={webpUrl} type='image/webp' />
-	<Image class='responsive__img' src={imageSrc} alt={node.alt || "Alt image"} title={node.title} inferSize class={textStyleClass} />
-</picture>
+<Picture src={webpUrl} inferSize width={node.width} pictureAttributes={{ style: { justifyContent: getAlignment }, class: "flex" }} class={`responsive__img ${textStyleClass}`} transition:name={"image-" + (node.headTransitionName || node.alt)} alt={node.alt || "Alt image"} title={node.title} formats={["webp"]} />
