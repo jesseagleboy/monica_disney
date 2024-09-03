@@ -1,5 +1,4 @@
 ---
-
 // Transition issue with this button with selecting themes on page changes so do not add transition
 ---
 
@@ -53,21 +52,19 @@
 	// doConfetti function has setInterval so it needs to be cleared before trasitioning. It also appears there are intervals called for each hover or mouse entered so you need an array of ids to track and clear them all before transitioning.
 	const resetArray: Awaited<() => void>[] = [];
 
-	document.addEventListener("astro:page-load", async () => {
-		// This section is for coming back from the Once Upon A Wish Travel page. There is no transition there so "before swap" is never called.
+	if (resetArray.length > 0) {
+		resetArray.forEach(reset => reset());
+		resetArray.length = 0;
+	}
 
-		if (resetArray.length > 0) {
-			resetArray.forEach(reset => reset());
-			resetArray.length = 0;
-		}
+	const button = document.querySelector("#lets-go-button");
+	console.log(button, "is button");
+	button?.addEventListener("mouseenter", async () => {
+		console.log("checking here");
+		resetArray.push(await doConfetti());
+	});
 
-		const button = document.querySelector("#lets-go-button");
-		button?.addEventListener("mouseenter", async () => {
-			resetArray.push(await doConfetti());
-		});
-
-		button?.addEventListener("focus", async () => {
-			resetArray.push(await doConfetti());
-		});
+	button?.addEventListener("focus", async () => {
+		resetArray.push(await doConfetti());
 	});
 </script>
