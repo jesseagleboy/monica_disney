@@ -49,7 +49,7 @@ export default defineConfig({
 			},
 			workbox: {
 				navigateFallback: "/404",
-				globPatterns: ["**/*.{css,js,html,svg,png,ico,txt}"],
+				globPatterns: [ "**/*.{css,js,json,png,svg,webp,html,astro,jpeg}" ],
 			},
 			manifest: {
 				name: "Magical Adventures by Monica",
