@@ -58,9 +58,7 @@
 	}
 
 	const button = document.querySelector("#lets-go-button");
-	console.log(button, "is button");
 	button?.addEventListener("mouseenter", async () => {
-		console.log("checking here");
 		resetArray.push(await doConfetti());
 	});
 
