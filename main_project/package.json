@@ -24,8 +24,6 @@
 		"@sanity/cli": "^3.57.0",
 		"@sanity/client": "^6.21.3",
 		"@sanity/image-url": "^1.0.2",
-		"@sanity/vision": "^3.57.0",
-		"@sanity/visual-editing": "^2.1.9",
 		"@swup/astro": "^1.4.1",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/container-queries": "^0.1.1",

@@ -1,0 +1,17 @@
+{
+  "name": "sanitystudio",
+  "module": "index.ts",
+  "type": "module",
+  "dependencies": {
+    "@sanity/vision": "^3.57.0",
+    "sanity": "^3.57.0",
+    "sanity-plugin-media": "^2.3.2",
+    "styled-components": "^6.1.13"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.8"
+  },
+  "peerDependencies": {
+    "typescript": "^5.5.4"
+  }
+}

@@ -2,11 +2,11 @@
 export const prerender = true;
 import Layout from "@/layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
-import { loadQuery } from "@/sanitymonicadisneysite/lib/load-query";
+import { loadQuery } from "../../functions/load-query
 import type { SanityDocument } from "@sanity/client";
 import PortableText from "@/components/PortableText.astro";
 import FireworksButton from "@/components/FireworksButton.astro";
-import { urlForImage } from "@/sanitymonicadisneysite/lib/urlForImage";
+import { urlForImage } from "../../functions/urlForImage
 import { Schema } from "astro-seo-schema";
 import createStarterMetaTags from "@/functions/createStarterMetaTags";
 import type { StarterMetaTagProps as InputProps } from "@/functions/createStarterMetaTags";

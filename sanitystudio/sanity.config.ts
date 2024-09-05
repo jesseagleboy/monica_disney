@@ -2,13 +2,13 @@
 import { defineConfig } from "sanity";
 import { visionTool } from "@sanity/vision";
 import { structureTool } from "sanity/structure";
-import { schemaTypes } from "@/sanitymonicadisneysite/schemaTypes";
+import { schemaTypes } from "./schemaTypes";
 import { presentationTool } from "sanity/presentation";
 import { media } from "sanity-plugin-media";
 
 export default defineConfig({
-	projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-	dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+	projectId: 'gwwfkmev',
+	dataset: 'production',
 	plugins: [
 		structureTool(),
 		visionTool(),
