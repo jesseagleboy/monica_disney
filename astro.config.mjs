@@ -7,7 +7,7 @@ import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
 import netlify from "@astrojs/netlify";
 import AstroPWA from "@vite-pwa/astro";
-
+import { imageService } from "@unpic/astro/service";
 import tunnel from "astro-tunnel";
 
 // https://astro.build/config
@@ -16,12 +16,15 @@ export default defineConfig({
 	server: {
 		open: true,
 	},
+	image: {
+		service: imageService(),
+	},
 	integrations: [
 		tailwind({
 			applyBaseStyles: false,
 		}),
 		mdx(),
-		sitemap( {
+		sitemap({
 			lastmod: new Date(),
 		}),
 		partytown({
@@ -49,7 +52,7 @@ export default defineConfig({
 			},
 			workbox: {
 				navigateFallback: "/404",
-				globPatterns: [ "**/*.{css,js,json,png,svg,webp,html,astro,jpeg}" ],
+				globPatterns: ["**/*.{css,js,json,png,svg,webp,html,astro,jpeg}"],
 			},
 			manifest: {
 				name: "Magical Adventures by Monica",

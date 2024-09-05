@@ -98,7 +98,7 @@ const extensions: SEOProps = {
 		}}
 	/>
 	<h1 class='text-3xl text-center p-4' transition:name={"main-title-" + cleanTitle}>{post.title}</h1>
-	<PortableTextImage imageInput={{ ...post.mainImage, alignment: "center", headTransitionName: cleanTitle }} class='rounded-3xl p-4 max-w-[50%]' />
+	<PortableTextImage imageInput={{ ...post.mainImage, alignment: "center", headTransitionName: cleanTitle }} class='rounded-3xl p-4 max-w-[50%] mx-auto' />
 	<div class='prose p-4' style={{ maxWidth: "100%" }} transition:name={"main-box-" + cleanTitle}>
 		<PortableText portableText={post.body} />
 	</div>
