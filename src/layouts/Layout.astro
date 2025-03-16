@@ -1,0 +1,118 @@
+---
+
+import Footer from "@/components/Footer.astro";
+import "@/styles/style.css";
+import Navbar from "@/components/navigation/Navbar.astro";
+import { VisualEditing } from "@sanity/astro/visual-editing";
+import { pwaInfo } from "virtual:pwa-info";
+import { pwaAssetsHead } from "virtual:pwa-assets/head";
+import { SEO } from "astro-seo";
+import type { SEOProps } from "astro-seo";
+import GoogleConsentBanner from "@/components/GoogleConsentBanner.astro";
+import { ClientRouter } from "astro:transitions"
+// import ReloadPrompt from "../components/ReloadPrompt.astro";
+
+interface Props {
+	userSEOProps: SEOProps;
+}
+
+const { userSEOProps } = Astro.props;
+---
+
+<!doctype html>
+<html lang='en'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
+		<meta name='generator' content={Astro.generator} />
+		<SEO {...userSEOProps} />
+		<link rel='sitemap' href='/sitemap-index.xml' type='application/xml' title='Sitemap' />
+		{pwaAssetsHead.themeColor && <meta name='theme-color' content={pwaAssetsHead.themeColor.content} />}
+		{pwaAssetsHead.links.map(link => <link {...link} />)}
+		{pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+		<slot name='json-ld' />
+		<slot name='seo' />
+		<!-- <script src='/src/pwa.ts'></script> -->
+		<!-- Google Consent Tag -->
+		<script is:inline type='text/partytown'>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			if (localStorage.getItem("consentMode") === null) {
+				gtag("consent", "default", {
+					ad_user_data: "denied",
+					ad_personalization: "denied",
+					ad_storage: "denied",
+					analytics_storage: "denied",
+					wait_for_update: 500,
+				});
+			} else {
+				gtag("consent", "default", JSON.parse(localStorage.getItem("consentMode")));
+			}
+			dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+		</script>
+		<!-- End Google Consent Tag -->
+		<!-- Google Tag Manager -->
+		<script is:inline type='text/partytown'>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-NF3RVNHX");
+		</script>
+		<!-- End Google Tag Manager -->
+
+		<ClientRouter />
+	</head>
+	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-NF3RVNHX' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+
+		<span class='bg-filter'></span>
+		<span class='flex flex-col justify-between h-dvh'>
+			<header>
+				<Navbar />
+			</header>
+			<main class='container mx-auto px-4'>
+				<slot />
+			</main>
+			<Footer />
+		</span>
+
+		<style is:global>
+			:root {
+				--accent: 136, 58, 234;
+				--accent-light: 224, 204, 250;
+				--accent-dark: 49, 10, 101;
+				--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
+			}
+
+			code {
+				font-family:
+					Menlo,
+					Monaco,
+					Lucida Console,
+					Liberation Mono,
+					DejaVu Sans Mono,
+					Bitstream Vera Sans Mono,
+					Courier New,
+					monospace;
+			}
+		</style>
+		<style lang='scss'>
+			@view-transition {
+				navigation: auto; /* enabled! */
+			}
+		</style>
+		<!-- <VisualEditing enabled={visualEditingEnabled} zIndex={1000} /> -->
+		<!-- <ReloadPrompt /> -->
+		<GoogleConsentBanner />
+	</body>
+</html>
