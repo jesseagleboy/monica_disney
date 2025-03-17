@@ -1,5 +1,0 @@
-[[plugins]]
-  package = "netlify-plugin-cloudinary"
-
-  [plugins.inputs]
-    imagesPath = "dist/static/"  # Replace with your actual images directory
