@@ -46,6 +46,7 @@ export default defineConfig({
 			workbox: {
 				navigateFallback: "/404",
 				globPatterns: ["**/*.{css,js,json,png,svg,webp,html,astro,jpeg}"],
+				maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
 			},
 			manifest: {
 				name: "Magical Adventures by Monica",
