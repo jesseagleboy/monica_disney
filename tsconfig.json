@@ -5,6 +5,6 @@
     "paths": {
       "@/*": ["src/*"],
       "@/images": ["src/images"],
-    }
+    },
   }
 }

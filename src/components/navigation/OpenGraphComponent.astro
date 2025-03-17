@@ -1,0 +1,49 @@
+---
+import { stegaClean } from "@sanity/client/stega";
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+	url?: string;
+	type?: string;
+}
+
+/* You can generate this image URL dynamically: https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/{site_text}/{title_text}/{image_url}/og.png
+  Replace the variables in the brackets with your own values and use this URL in the image tag below this comment. Ensure values are URL encoded.
+  For more information, read: https://www.opengraph.xyz/blog/how-to-implement-dynamic-open-graph-images
+  */
+
+/* "https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/magicaladventuresbymonica.com/Monica%20DeFosse%20-%20Once%20Upon%20A%20Wish%20Travel/https%3A%2F%2Fmagicaladventuresbymonica.com%2Fmonica_og_image.jpeg/og.png"
+ */
+
+const { title = "Monica DeFosse - Once Upon A Wish Travel Agent", description = "Making your magical adventures come alive!", image = "https://magicaladventuresbymonica.com/monica_og_image.jpeg", url = Astro.url.href, type = "website" } = Astro.props;
+
+const encodedTitle = encodeURIComponent(stegaClean(Astro.url.href));
+const encodedDescription = encodeURIComponent(stegaClean(description));
+const encodedImageURL = encodeURIComponent(stegaClean(image) + "?h=500&w=500"); // height is used to reduce image size for image generator or it will not render
+const dynamic = `https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/${encodedTitle}/${encodedDescription}/${encodedImageURL}/og.png`;
+---
+
+<!-- Facebook Meta Tags -->
+<meta property='og:url' content={url} />
+<meta property='og:type' content={type} />
+<meta property='og:title' content={title} />
+<meta property='og:description' content={description} />
+<meta property='og:image' content={dynamic} />
+<meta property='og:site_name' content='Magical Adventures By Monica' />
+<meta property='og:locale' content='en_US' />
+
+{type === "article" && (
+<meta property='article:published_time' content={new Date().toISOString()} />
+
+)}
+
+<!-- Twitter Meta Tags -->
+<meta name='twitter:card' content='summary_large_image' />
+<meta property='twitter:domain' content='magicaladventuresbymonica.com' />
+<meta property='twitter:url' content={url} />
+<meta name='twitter:title' content={title} />
+<meta name='twitter:description' content={description} />
+<meta name='twitter:image' content={dynamic} />
+
+<!-- Meta Tags Generated via https://www.opengraph.xyz -->

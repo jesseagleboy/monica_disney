@@ -1,78 +1,86 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import Footer from "@/components/Footer.astro";
-import oldEpcotPhoto from "@/images/old_epcot_logo_wiki.webp";
-import { getImage } from "astro:assets";
-import "../styles/style.scss";
+import "@/styles/style.css";
 import Navbar from "@/components/navigation/Navbar.astro";
+import { pwaInfo } from "virtual:pwa-info";
+import { pwaAssetsHead } from "virtual:pwa-assets/head";
+import { SEO } from "astro-seo";
+import type { SEOProps } from "astro-seo";
+import GoogleConsentBanner from "@/components/GoogleConsentBanner.astro";
+import { ClientRouter } from "astro:transitions";
+// import ReloadPrompt from "../components/ReloadPrompt.astro";
 
 interface Props {
-	title: string;
-	description?: string;
+	userSEOProps: SEOProps;
 }
 
-const optimizedImage = await getImage({
-	src: oldEpcotPhoto,
-});
-
-const defaultDescription = "Once Upon A Wish Travel";
-
-const { title, description = defaultDescription } = Astro.props;
+const { userSEOProps } = Astro.props;
 ---
 
 <!doctype html>
 <html lang='en'>
 	<head>
 		<meta charset='UTF-8' />
-		<meta name='description' content={description} />
 		<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
-		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-		<link rel='apple-touch-icon' type='image/svg+xml' href='/favicon.svg' />
 		<meta name='generator' content={Astro.generator} />
-		<link rel='sitemap' href='/sitemap-index.xml' />
-
-		<!-- Google tag (gtag.js) -->
-		<script is:inline type='text/partytown' async src='https://www.googletagmanager.com/gtag/js?id=G-W6LDP1M78E'></script>
+		<SEO {...userSEOProps} />
+		<link rel='sitemap' href='/sitemap-index.xml' type='application/xml' title='Sitemap' />
+		{pwaAssetsHead.themeColor && <meta name='theme-color' content={pwaAssetsHead.themeColor.content} />}
+		{pwaAssetsHead.links.map(link => <link {...link} />)}
+		{pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+		<slot name='json-ld' />
+		<slot name='seo' />
+		<!-- <script src='/src/pwa.ts'></script> -->
+		<!-- Google Consent Tag -->
 		<script is:inline type='text/partytown'>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
 			}
-			gtag("js", new Date());
-
-			gtag("config", "G-W6LDP1M78E");
+			if (localStorage.getItem("consentMode") === null) {
+				gtag("consent", "default", {
+					ad_user_data: "denied",
+					ad_personalization: "denied",
+					ad_storage: "denied",
+					analytics_storage: "denied",
+					wait_for_update: 500,
+				});
+			} else {
+				gtag("consent", "default", JSON.parse(localStorage.getItem("consentMode")));
+			}
+			dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
 		</script>
+		<!-- End Google Consent Tag -->
+		<!-- Google Tag Manager -->
+		<script is:inline type='text/partytown'>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-NF3RVNHX");
+		</script>
+		<!-- End Google Tag Manager -->
 
-		<!-- Facebook Meta Tags -->
-		<meta property='og:url' content='https://magicaladventuresbymonica.com/' />
-		<meta property='og:type' content='website' />
-		<meta property='og:title' content='Monica DeFosse - Once Upon A Wish Travel' />
-		<meta property='og:description' content='Making your magical adventures come alive!' />
-		<meta property='og:image' content='https://magicaladventuresbymonica.com/monica_og_image.jpeg' />
-		<meta property='og:site_name' content='Magical Adventures By Monica' />
-
-		<!-- Twitter Meta Tags -->
-		<meta name='twitter:card' content='summary_large_image' />
-		<meta property='twitter:domain' content='magicaladventuresbymonica.com' />
-		<meta property='twitter:url' content='https://magicaladventuresbymonica.com/' />
-		<meta name='twitter:title' content='Monica DeFosse - Once Upon A Wish Travel' />
-		<meta name='twitter:description' content='Monica DeFosse - Once Upon A Wish Travel' />
-		<meta name='twitter:image' content='https://magicaladventuresbymonica.com/monica_og_image.jpeg' />
-
-		<!-- Meta Tags Generated via https://www.opengraph.xyz -->
-
-		<title>{title}</title>
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-NF3RVNHX' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+
+		<span class='bg-filter'></span>
 		<span class='flex flex-col justify-between h-dvh'>
 			<header>
 				<Navbar />
 			</header>
-			<div class='background-image'></div>
-			<div class='container mx-auto px-4'>
+			<main class=''>
 				<slot />
-			</div>
+			</main>
 			<Footer />
 		</span>
 
@@ -95,25 +103,14 @@ const { title, description = defaultDescription } = Astro.props;
 					Courier New,
 					monospace;
 			}
-
 		</style>
-		<style lang='scss' define:vars={{ bgSrc: `url(${optimizedImage.src})` }}>
+		<style lang='scss'>
 			@view-transition {
 				navigation: auto; /* enabled! */
 			}
-
-			.background-image {
-				background-image: var(--bgSrc);
-				height: 500px;
-				background-position: center;
-				background-repeat: no-repeat;
-				background-size: cover;
-				z-index: -1;
-				position: absolute;
-				left: 0;
-				right: 0;
-				filter: blur(10px) brightness(90%);
-			}
 		</style>
+		<!-- <VisualEditing enabled={visualEditingEnabled} zIndex={1000} /> -->
+		<!-- <ReloadPrompt /> -->
+		<GoogleConsentBanner />
 	</body>
 </html>

@@ -1,0 +1,44 @@
+---
+import themeArray from "@/functions/themeArray";
+---
+
+<div class='dropdown'>
+	<div tabindex='0' role='button' class='btn btn-xs sm:btn-sm md:btn-md lg:btn-lg m-1'>
+		Theme
+		<svg width='12px' height='12px' class='inline-block h-2 w-2 fill-current opacity-60' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2048 2048'>
+			<path d='M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z'></path>
+		</svg>
+	</div>
+	<ul tabindex='0' class='dropdown-content bg-base-300 rounded-box z-[1] w-52 md:w-auto p-2 shadow-2xl h-[50vh] overflow-y-auto'>
+		{
+			themeArray.map(theme => (
+				<li>
+					<input id={theme} type='radio' name='theme-dropdown' class='theme-controller btn btn-sm btn-block btn-ghost justify-start checked:bg-none' aria-label={theme} value={theme} transition:persist onclick="localStorage.setItem('theme', this.value);" />
+				</li>
+			))
+		}
+	</ul>
+</div>
+
+<script>
+	function setTheme() {
+		// ☝️ This script prevent the FART effect.
+		if (localStorage.getItem("theme") === null) {
+			const initialColor = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+			document.documentElement.setAttribute("data-theme", initialColor);
+			const selectedTheme = document.querySelector<HTMLInputElement>("[value =" + initialColor + "]");
+			localStorage.setItem("theme", initialColor);
+			selectedTheme && (selectedTheme.checked = true);
+		} else {
+			document.documentElement.setAttribute("data-theme", localStorage.getItem("theme")!);
+			// check the one that is selected on load, get the element by id
+			const selectedTheme = document.querySelector<HTMLInputElement>("[value =" + localStorage.getItem("theme") + "]");
+			selectedTheme && (selectedTheme.checked = true);
+		}
+	}
+	setTheme();
+
+	document.addEventListener("astro:after-swap", () => {
+		setTheme();
+	});
+</script>
