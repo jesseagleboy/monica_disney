@@ -9,7 +9,8 @@ import monicaHeaderImage from "@/images/monica_magic_kingdom_snow.jpeg";
 
 const objectToPlace: InputProps = {
 	title: "Monica DeFosse - Once Upon A Wish Travel",
-	description: "Hello Dreamers! I'm Monica and here's why I love helping you plan all your special magical adventures.",
+	description:
+		"Hello Dreamers! I'm Monica and here's why I love helping you plan all your special magical adventures.",
 	url: Astro.url.href,
 	mainSite: Astro.url.origin,
 	imageURL: `${Astro.url.origin}/monica_og_image.jpeg`,
@@ -28,10 +29,10 @@ const monicaHeader = await getImage({ src: monicaHeaderImage });
 ---
 
 <Layout userSEOProps={SEO}>
-	<div class='hero min-h-screen' style={`background-image: url(${monicaHeader.src});`}>
+	<div class='hero min-h-screen' style={`background-image: url(${monicaHeader.src});`} >
 		<div class='hero-overlay'></div>
 		<div class='hero-content flex-col prose-p:text-neutral-content text-center'>
-			<h1 class='text-6xl font-bold text-white'>Welcome to <em>Monica DeFosse's</em> <strong style='color:gold;'>Once Upon A Wish Travel</strong>!</h1>
+			<h1 class='text-6xl font-bold text-white' transition:name="page-title">Welcome to <em>Monica DeFosse's</em> <strong style='color:gold;'>Once Upon A Wish Travel</strong>!</h1>
 			<TextSection>
 				<p>My name is Monica and I will be your fairy travel agent. I am here to help you plan your next adventure. Whether you are looking for a relaxing setup at Disney or Universal hotels, magical adventures at either theme parks, or curious about the best places to eat, I am here to help you plan your next adventure.</p>
 				<p>I have been traveling to Disney for over 20 years and have learned a lot of tips and tricks along the way. I have begun my adventure at Universal and Islands of Adventure and looking to assist you on your own adventure to the parks too!</p>

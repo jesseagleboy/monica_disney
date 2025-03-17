@@ -68,21 +68,18 @@ const { userSEOProps } = Astro.props;
 
 		<ClientRouter />
 	</head>
-	<body>
+	<body class="flex flex-col justify-between h-[100dvh]">
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-NF3RVNHX' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
-
-		<span class='bg-filter'></span>
-		<span class='flex flex-col justify-between h-dvh'>
+		
 			<header>
 				<Navbar />
 			</header>
-			<main class=''>
+			<main class='my-auto'>
 				<slot />
 			</main>
 			<Footer />
-		</span>
 
 		<style is:global>
 			:root {
