@@ -1,15 +1,13 @@
 ---
-
 import Footer from "@/components/Footer.astro";
 import "@/styles/style.css";
 import Navbar from "@/components/navigation/Navbar.astro";
-import { VisualEditing } from "@sanity/astro/visual-editing";
 import { pwaInfo } from "virtual:pwa-info";
 import { pwaAssetsHead } from "virtual:pwa-assets/head";
 import { SEO } from "astro-seo";
 import type { SEOProps } from "astro-seo";
 import GoogleConsentBanner from "@/components/GoogleConsentBanner.astro";
-import { ClientRouter } from "astro:transitions"
+import { ClientRouter } from "astro:transitions";
 // import ReloadPrompt from "../components/ReloadPrompt.astro";
 
 interface Props {
@@ -80,7 +78,7 @@ const { userSEOProps } = Astro.props;
 			<header>
 				<Navbar />
 			</header>
-			<main class='container mx-auto px-4'>
+			<main class=''>
 				<slot />
 			</main>
 			<Footer />

@@ -2,7 +2,7 @@
 // Transition issue with this button with selecting themes on page changes so do not add transition
 ---
 
-<a role='button' id='lets-go-button' class='prose' href='https://www.onceuponawishtravel.com/monica-defosse?fbclid=IwZXh0bgNhZW0CMTEAAR1ni540p2iP6cKKQEpH9C1YbEZ3Y85XzHMWNy8TIHpJqG4AYLeSf4Ahyk0_aem_AQuQ1NTwg7A5BLtF8ltfcNDQcJiufX3cinjOdkbi0V3VZN3u5AbDer1vg7_uxauyFeqF3x1t4tYAM7nBhqd62bAE'>Start the Fireworks!</a>
+<a role='button' id='lets-go-button' class='prose' href='https://ouawtravel.com/ouaw-team/monica-defosse/' target='_blank'>Start the Fireworks!</a>
 
 <style lang='scss'>
 	#lets-go-button {
@@ -48,26 +48,26 @@
 </style>
 
 <script>
-	import doConfetti from "@/functions/doConfetti";
-	// doConfetti function has setInterval so it needs to be cleared before trasitioning. It also appears there are intervals called for each hover or mouse entered so you need an array of ids to track and clear them all before transitioning.
-	const resetArray: Awaited<() => void>[] = [];
+	// import doConfetti from "@/functions/doConfetti";
+	// // doConfetti function has setInterval so it needs to be cleared before trasitioning. It also appears there are intervals called for each hover or mouse entered so you need an array of ids to track and clear them all before transitioning.
+	// const resetArray: Awaited<() => void>[] = [];
 
-	if (resetArray.length > 0) {
-		resetArray.forEach(reset => reset());
-		resetArray.length = 0;
-	}
+	// if (resetArray.length > 0) {
+	// 	resetArray.forEach(reset => reset());
+	// 	resetArray.length = 0;
+	// }
 
-	const button = document.querySelector("#lets-go-button");
-	
-	button?.addEventListener("mouseenter", async () => {
-		resetArray.push(await doConfetti());
-	});
+	// const button = document.querySelector("#lets-go-button");
 
-	button?.addEventListener("focus", async () => {
-		resetArray.push(await doConfetti());
-	});
+	// button?.addEventListener("mouseenter", async () => {
+	// 	resetArray.push(await doConfetti());
+	// });
 
-	document.addEventListener("astro:after-swap", () => {
-		doConfetti();
-	})
+	// button?.addEventListener("focus", async () => {
+	// 	resetArray.push(await doConfetti());
+	// });
+
+	// document.addEventListener("astro:after-swap", () => {
+	// 	doConfetti();
+	// });
 </script>
