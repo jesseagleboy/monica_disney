@@ -41,6 +41,7 @@
 		"astro-seo": "^0.8.4",
 		"astro-seo-schema": "^5.0.0",
 		"astro-tunnel": "^0.1.6",
+		"caniuse-lite": "^1.0.30001705",
 		"canvas-confetti": "^1.9.3",
 		"easymde": "^2.20.0",
 		"fulldev-ui": "^0.6.5",
