@@ -23,6 +23,7 @@ const { userSEOProps } = Astro.props;
 		<meta charset='UTF-8' />
 		<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover' />
 		<meta name='generator' content={Astro.generator} />
+		<meta name='yandex-verification' content='bfa806dd5e81d697' />
 		<SEO {...userSEOProps} />
 		<link rel='sitemap' href='/sitemap-index.xml' type='application/xml' title='Sitemap' />
 		{pwaAssetsHead.themeColor && <meta name='theme-color' content={pwaAssetsHead.themeColor.content} />}
@@ -68,18 +69,18 @@ const { userSEOProps } = Astro.props;
 
 		<ClientRouter />
 	</head>
-	<body class="flex flex-col justify-between h-[100dvh]">
+	<body class='flex flex-col justify-between h-[100dvh]'>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-NF3RVNHX' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
-		
-			<header>
-				<Navbar />
-			</header>
-			<main class='my-auto'>
-				<slot />
-			</main>
-			<Footer />
+
+		<header>
+			<Navbar />
+		</header>
+		<main class='my-auto'>
+			<slot />
+		</main>
+		<Footer />
 
 		<style is:global>
 			:root {
