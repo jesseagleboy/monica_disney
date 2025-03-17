@@ -16,13 +16,13 @@ export default defineConfig({
 		open: true,
 	},
 
-    experimental: {
-        responsiveImages: true,
-        svg: true,
-    },
+	experimental: {
+		responsiveImages: true,
+		svg: true,
+	},
 
 	image: {
-		experimentalLayout: 'responsive',
+		experimentalLayout: "responsive",
 	},
 
 	integrations: [
@@ -83,9 +83,6 @@ export default defineConfig({
 		}),
 		tunnel(),
 	],
-
-	adapter: netlify(),
-
 	vite: {
 		plugins: [tailwindcss()],
 	},
