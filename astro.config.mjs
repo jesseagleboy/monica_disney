@@ -3,7 +3,6 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
-import netlify from "@astrojs/netlify";
 import AstroPWA from "@vite-pwa/astro";
 import tunnel from "astro-tunnel";
 import tailwindcss from "@tailwindcss/vite";
