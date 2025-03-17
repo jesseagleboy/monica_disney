@@ -71,7 +71,7 @@
 		"@types/node": "^22.13.10",
 		"@vite-pwa/assets-generator": "^0.2.6",
 		"@vite-pwa/astro": "^0.5.0",
-		"daisyui": "^5.0.4",
+		"daisyui": "^5.0.5",
 		"fluid-tailwind": "^1.0.4",
 		"postcss-html": "^1.8.0",
 		"stylelint-config-html": "^1.1.0",
