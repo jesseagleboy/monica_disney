@@ -1,7 +1,6 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
 import AstroPWA from "@vite-pwa/astro";
 import tunnel from "astro-tunnel";
@@ -28,14 +27,13 @@ export default defineConfig({
 		mdx(),
 		sitemap({
 			lastmod: new Date(),
+			xslURL: '/sitemap.xsl',
 		}),
 		partytown({
 			config: {
 				forward: ["dataLayer.push"],
-				debug: true,
 			},
 		}),
-		react(),
 		AstroPWA({
 			includeAssets: ["favicon.svg"],
 			registerType: "autoUpdate",
