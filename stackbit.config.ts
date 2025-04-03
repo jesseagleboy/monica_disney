@@ -5,7 +5,7 @@ export default defineStackbitConfig({
 	stackbitVersion: "~0.6.0",
 	ssgName: "custom",
 	nodeVersion: "20",
-	devCommand: "node_modules/.bin/astro dev --port {PORT} --hostname 127.0.0.1",
+	devCommand: "bun --bun node_modules/.bin/astro dev --port {PORT} --hostname 127.0.0.1",
 	experimental: {
 		ssg: {
 			name: "Astro",
