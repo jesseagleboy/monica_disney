@@ -29,5 +29,6 @@ pnpm-debug.log*
 .sanity
 .vscode
 .netlify
+.stackbit/
 .prettierrc
 dev-dist/
