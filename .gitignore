@@ -30,4 +30,5 @@ pnpm-debug.log*
 .vscode
 .netlify
 .prettierrc
+.stackbit
 dev-dist/
