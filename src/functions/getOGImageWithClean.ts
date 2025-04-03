@@ -15,7 +15,7 @@ function getOGImage({ currentURL, description, imageURL }: { currentURL: string;
 	const encodedTitle = encodeURIComponent(stegaClean(currentURL));
 	const encodedDescription = encodeURIComponent(stegaClean(description));
 	// height is used to reduce image size for image generator or it will not render
-	const encodedImageURL = encodeURIComponent(stegaClean(imageURL) + "?h=500&w=500");
+	const encodedImageURL = encodeURIComponent(stegaClean(imageURL) + (imageURL.includes("?") ? "" : "?h=500&w=500"));
 	const dynamic = `https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v4/${encodedTitle}/${encodedDescription}/${encodedImageURL}/og.png`;
 
 	return {

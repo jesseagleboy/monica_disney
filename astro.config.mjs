@@ -1,50 +1,53 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import sanity from "@sanity/astro";
-import react from "@astrojs/react";
 import partytown from "@astrojs/partytown";
-import netlify from "@astrojs/netlify";
 import AstroPWA from "@vite-pwa/astro";
+import tunnel from "astro-tunnel";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://magicaladventuresbymonica.com/",
+	site: "https://www.magicaladventuresbymonica.com/",
+
 	server: {
-		open: true,
+		port: 3000,
 	},
+
+	experimental: {
+		responsiveImages: true,
+		svg: true,
+	},
+
+	image: {
+		experimentalLayout: "responsive",
+	},
+
 	integrations: [
-		tailwind({
-			applyBaseStyles: false,
-		}),
 		mdx(),
-		sitemap(),
+		sitemap({
+			lastmod: new Date(),
+			xslURL: '/sitemap.xsl',
+		}),
 		partytown({
 			config: {
 				forward: ["dataLayer.push"],
 			},
 		}),
-		sanity({
-			projectId: "gwwfkmev",
-			dataset: "production",
-			apiVersion: "2024-08-05",
-			useCdn: false,
-			studioBasePath: "/studio",
-			stega: {
-				studioUrl: "/studio",
-			},
-		}),
-		react(),
 		AstroPWA({
-			// includeAssets: ["favicon.svg"],
-			// registerType: "autoUpdate",
-			// devOptions: {
-			// 	enabled: true,
-			// },
+			includeAssets: ["favicon.svg"],
+			registerType: "autoUpdate",
+			devOptions: {
+				enabled: true,
+			},
+			workbox: {
+				navigateFallback: "/404",
+				globPatterns: ["**/*.{css,js,json,png,svg,webp,html,astro,jpeg}"],
+				maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+			},
 			manifest: {
 				name: "Magical Adventures by Monica",
-				short_name: "Monica Magic Adventures",
+				short_name: "Magical Adventures by Monica",
 				description: "Monica DeFosse - Once Upon A Wish Travel",
 				theme_color: "#ffffff",
 				icons: [
@@ -72,8 +75,13 @@ export default defineConfig({
 					},
 				],
 			},
+			pwaAssets: {
+				config: true,
+			},
 		}),
+		tunnel(),
 	],
-	output: "hybrid",
-	adapter: netlify(),
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });

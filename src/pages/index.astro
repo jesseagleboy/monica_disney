@@ -1,25 +1,17 @@
 ---
-export const prerender = true;
 import Layout from "../layouts/Layout.astro";
 import TextSection from "../layouts/TextSection.astro";
-import { Image } from "astro:assets";
-import monicaPhoto from "@/images/monica.jpeg";
-import { getEntry } from "astro:content";
+import { getImage, Image } from "astro:assets";
 import type { Props as SEOProps } from "astro-seo";
 import createStarterMetaTags from "@/functions/createStarterMetaTags";
 import type { StarterMetaTagProps as InputProps } from "@/functions/createStarterMetaTags";
-import { Schema } from "astro-seo-schema"
-
-const introList = await getEntry("intro", "intro");
-
-const Content = (await introList?.render()).Content;
 
 const objectToPlace: InputProps = {
 	title: "Monica DeFosse - Once Upon A Wish Travel",
 	description: "Hello Dreamers! I'm Monica and here's why I love helping you plan all your special magical adventures.",
 	url: Astro.url.href,
 	mainSite: Astro.url.origin,
-	imageURL: "https://magicaladventuresbymonica.com" + "/monica_og_image.jpeg",
+	imageURL: `${Astro.url.origin}/monica_og_image.jpeg`,
 	imageAlt: "Monica DeFosse - Once Upon A Wish Travel Photo",
 	openGraph: {
 		type: "website",
@@ -33,12 +25,30 @@ const SEO: SEOProps = createStarterMetaTags(objectToPlace);
 ---
 
 <Layout userSEOProps={SEO}>
-	<section id='image-top'>
-		<Image class='monica-icon' src={monicaPhoto} width={305} alt='Monica DeFosse - Once Upon A Wish Travel Photo' />
-	</section>
-	<TextSection>
-		<Content slot='content-area' />
-	</TextSection>
+	<span slot='under-body-tag'>
+		<div id='fb-root'></div>
+		<script is:inline crossorigin='anonymous' async defer src='https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v22.0&appId=1202680461124955'></script>
+		<script is:inline data-astro-rerun>
+			if (window.FB) {
+				FB.XFBML.parse();
+			}
+		</script>
+	</span>
+	<div slot='hero' class='prose-p:text-neutral-content'>
+		<h1 class='text-6xl font-bold text-white' transition:name='page-title'>Welcome to <em>Monica DeFosse's</em> <strong style='color:gold;'>Once Upon A Wish Travel</strong>!</h1>
+		<TextSection>
+			<p>My name is Monica and I will be your fairy travel agent. I am here to help you plan your next adventure. Whether you are looking for a relaxing setup at Disney or Universal hotels, magical adventures at either theme parks, or curious about the best places to eat, I am here to help you plan your next adventure.</p>
+			<p>I have been traveling to Disney for over 20 years and have learned a lot of tips and tricks along the way. I have begun my adventure at Universal and Islands of Adventure and looking to assist you on your own adventure to the parks too!</p>
+		</TextSection>
+	</div>
+	<aside class='card bg-base-100 w-fit mx-auto shadow-md my-3'>
+		<div class='card-body'>
+			<h3 class='card-title'>Follow Me on Facebook for Latest Updates</h3>
+			<div class='fb-page' data-href='https://www.facebook.com/profile.php?id=61569290375603' data-tabs='timeline' data-small-header='false' data-adapt-container-width='true' data-lazy='true' data-hide-cover='false' data-show-facepile='true'>
+				<blockquote cite='https://www.facebook.com/profile.php?id=61569290375603' class='fb-xfbml-parse-ignore'><a href='https://www.facebook.com/profile.php?id=61569290375603'>Monica DeFosse - Once Upon A Wish Travel</a></blockquote>
+			</div>
+		</div>
+	</aside>
 </Layout>
 
 <style>

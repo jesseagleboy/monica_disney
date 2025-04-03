@@ -1,54 +1,128 @@
-# Astro Starter Kit: Basics
+# Monica DeFosse - Once Upon A Wish Travel [![Netlify Status](https://api.netlify.com/api/v1/badges/b58c08b7-f165-4c69-9d2e-08e5e23b4416/deploy-status)](https://app.netlify.com/sites/magicaladventuresbymonica/deploys)
 
-```sh
-npm create astro@latest -- --template basics
+This repository contains the source code for Monica DeFosse's static travel agent profile website under Once Upon A Wish Travel. The website showcases Monica's passion for Disney and Universal travel planning services.
+
+## Overview
+
+Monica DeFosse is a travel agent specializing in Disney and Universal destinations. The website serves as her professional profile, sharing her personal connection to Disney, travel experiences, and services offered to potential clients. This is a fully static website built with Astro, optimized for speed, SEO, and minimal JavaScript.
+
+## Technical Stack
+
+### Framework
+
+- **[Astro](https://astro.build/)** - The website is built using Astro, a modern static site builder that allows for high performance, zero JavaScript by default, and flexible content options.
+
+### Key Features
+
+- **Static site generation** for maximum performance and simplified hosting
+- **Content collections** for structured content management
+- **Image optimization** using Astro's built-in image processing
+- **SEO optimization** with custom meta tags and structured data
+- **Responsive design** that works across all devices
+- **View transitions** for smooth page navigation experiences
+
+### Important NPM Packages
+
+- `astro-seo` - Comprehensive SEO management
+- `astro:assets` - Image optimization and management
+- `astro:content` - Content management system
+- `scss` - Styling with Sass preprocessor
+
+## Project Structure
+
+```
+src/
+├── functions/
+│   └── createStarterMetaTags.ts - Custom SEO tag generator
+├── images/ - Contains site images
+├── layouts/
+│   ├── Layout.astro - Main layout component
+│   └── TextSection.astro - Reusable text section component
+├── pages/
+│   ├── 404.astro - Custom 404 page
+│   ├── 500.astro - Server error page
+│   ├── about-me/
+│   │   └── index.astro - About Me page
+│   ├── contact/
+│   ├── faq/
+│   ├── index.astro - Homepage
+│   └── my-adventures/
+└── styles/ - SCSS stylesheets
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Pages
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Home** - Introduction to Monica and her services
+- **About Me** - Personal story about Monica's connection to Disney and travel
+- **My Adventures** - Showcases Monica's travel experiences
+- **FAQ** - Answers to common questions
+- **Contact** - Form to get in touch with Monica
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Design Features
 
-## 🚀 Project Structure
+- Custom hero sections with background images
+- Card-based layout for content presentation
+- Responsive design with mobile-first approach
+- Custom error pages (404, 500)
+- Accessibility considerations
 
-Inside of your Astro project, you'll see the following folders and files:
+## SEO Implementation
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+The website implements comprehensive SEO using the `astro-seo` package and custom meta tag functions:
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- Custom Open Graph tags for social sharing
+- Twitter card optimization
+- Structured data for better search engine visibility
+- Custom page titles and descriptions
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Getting Started
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Prerequisites
 
-## 🧞 Commands
+- Node.js (v16 or higher)
+- npm or yarn
 
-All commands are run from the root of the project, from a terminal:
+### Installation
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+1. Clone the repository
 
-## 👀 Want to learn more?
+   ```bash
+   git clone [repository-url]
+   ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+2. Install dependencies
+
+   ```bash
+   npm install
+   ```
+
+3. Run development server
+
+   ```bash
+   npm run dev
+   ```
+
+4. Build for production
+
+   ```bash
+   npm run build
+   ```
+
+## Deployment
+
+This website is deployed on Netlify.
+
+## License
+
+© 2025 Monica DeFosse. All Rights Reserved.
+
+This codebase and its contents are the exclusive property of Jesse Slomowitz & Monica DeFosse. Unauthorized copying, modification, distribution, or use of this content is prohibited without express written permission.
+
+## Contact
+
+For questions about the website or Monica's travel services:
+
+- Email: <monica.defosse@ouawtravel.com>
+- Official Profile: [https://ouawtravel.com/ouaw-team/monica-defosse/](https://ouawtravel.com/ouaw-team/monica-defosse/)
+
+You can also visit the contact page on the live site.

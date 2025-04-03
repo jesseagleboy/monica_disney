@@ -2,16 +2,11 @@
 import FireworksButton from "@/components/FireworksButton.astro";
 ---
 
-<section id='text-section'>
-	<section id='article-section'>
-		<article class='prose md:prose-lg lg:prose-xl' transition:name='main-box'>
-			<slot name='content-area'>
-				<!-- Fill in text here -->
-			</slot>
-		</article>
+<section id='article-section'>
+	<article class='prose md:prose-lg lg:prose-xl' transition:name='main-box'>
 		<slot />
-		<FireworksButton />
-	</section>
+	</article>
+	<FireworksButton />
 </section>
 
 <style lang='scss'>
@@ -31,12 +26,7 @@ import FireworksButton from "@/components/FireworksButton.astro";
 	}
 
 	article {
-		transition: all 0.2s ease-in-out;
-	}
-</style>
-
-<style is:global>
-	#article-section {
-		/* background-color: aliceblue; */
+		// transition: all 0.2s ease-in-out;
+		margin-bottom: 1rem;
 	}
 </style>
