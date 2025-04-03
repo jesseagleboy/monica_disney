@@ -1,0 +1,42 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import TextSection from "@/layouts/TextSection.astro";
+import { getCollection } from "astro:content";
+
+const blogPosts = await getCollection("blog");
+---
+
+<Layout userSEOProps={{ title: "Blog" }}>
+	<div slot='hero'>
+		<h1 transition:name='page-title' class='text-6xl font-bold text-white text-center'>Blog</h1>
+		<TextSection>
+			<div class='flex flex-wrap gap-4 justify-center'>
+				{
+					blogPosts.map(post => (
+						<div class='card bg-base-100 w-96 shadow-sm'>
+							<div class='card-body' data-sb-object-id={post.filePath}>
+								<h2 class='card-title' data-sb-field-path='title'>
+									{post.data.title}
+								</h2>
+								<p data-sb-field-path='description'>{post.data.description}</p>
+								<div class='card-actions justify-end'>
+									<button class='btn btn-primary'>
+										<a href={`/blog/${post.id}`}>Read More</a>
+									</button>
+								</div>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</TextSection>
+		<!-- <div class='flex justify-center gap-4'>
+			<div class='flex justify-center'>
+				<a href='/blog/create' class='btn btn-primary'>Create a new blog post</a>
+			</div>
+			<div class='flex justify-center'>
+				<a href='/blog/edit' class='btn btn-primary'>Edit an existing blog post</a>
+			</div>
+		</div> -->
+	</div>
+</Layout>

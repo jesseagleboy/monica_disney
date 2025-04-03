@@ -5,7 +5,6 @@ import { getImage, Image } from "astro:assets";
 import type { Props as SEOProps } from "astro-seo";
 import createStarterMetaTags from "@/functions/createStarterMetaTags";
 import type { StarterMetaTagProps as InputProps } from "@/functions/createStarterMetaTags";
-import monicaHeaderImage from "@/images/monica_magic_kingdom_snow.jpeg";
 
 const objectToPlace: InputProps = {
 	title: "Monica DeFosse - Once Upon A Wish Travel",
@@ -23,8 +22,6 @@ const objectToPlace: InputProps = {
 };
 
 const SEO: SEOProps = createStarterMetaTags(objectToPlace);
-
-const monicaHeader = await getImage({ src: monicaHeaderImage });
 ---
 
 <Layout userSEOProps={SEO}>
@@ -37,15 +34,12 @@ const monicaHeader = await getImage({ src: monicaHeaderImage });
 			}
 		</script>
 	</span>
-	<div class='hero min-h-screen' style={`background-image: url(${monicaHeader.src});`}>
-		<div class='hero-overlay'></div>
-		<div class='hero-content flex-col prose-p:text-neutral-content text-center'>
-			<h1 class='text-6xl font-bold text-white' transition:name='page-title'>Welcome to <em>Monica DeFosse's</em> <strong style='color:gold;'>Once Upon A Wish Travel</strong>!</h1>
-			<TextSection>
-				<p>My name is Monica and I will be your fairy travel agent. I am here to help you plan your next adventure. Whether you are looking for a relaxing setup at Disney or Universal hotels, magical adventures at either theme parks, or curious about the best places to eat, I am here to help you plan your next adventure.</p>
-				<p>I have been traveling to Disney for over 20 years and have learned a lot of tips and tricks along the way. I have begun my adventure at Universal and Islands of Adventure and looking to assist you on your own adventure to the parks too!</p>
-			</TextSection>
-		</div>
+	<div slot='hero' class='prose-p:text-neutral-content'>
+		<h1 class='text-6xl font-bold text-white' transition:name='page-title'>Welcome to <em>Monica DeFosse's</em> <strong style='color:gold;'>Once Upon A Wish Travel</strong>!</h1>
+		<TextSection>
+			<p>My name is Monica and I will be your fairy travel agent. I am here to help you plan your next adventure. Whether you are looking for a relaxing setup at Disney or Universal hotels, magical adventures at either theme parks, or curious about the best places to eat, I am here to help you plan your next adventure.</p>
+			<p>I have been traveling to Disney for over 20 years and have learned a lot of tips and tricks along the way. I have begun my adventure at Universal and Islands of Adventure and looking to assist you on your own adventure to the parks too!</p>
+		</TextSection>
 	</div>
 	<aside class='card bg-base-100 w-fit mx-auto shadow-md my-3'>
 		<div class='card-body'>

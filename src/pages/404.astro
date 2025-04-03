@@ -1,4 +1,5 @@
 ---
+import TextSection from "@/layouts/TextSection.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -8,18 +9,15 @@ import Layout from "../layouts/Layout.astro";
 		noindex: true,
 		title: "404 - Page Not Found",
 		description: "Page Not Found",
-	}}
->
-	<main>
-		<section>
-			<article id='article-section' transition:name='main-box'>
-				<h1>404 - Page Not Found</h1>
-				<p>Sorry, we couldn't find that page.</p>
-				<p>Please check the URL and try again.</p>
-				<p><a href='/' data-astro-prefetch>Go back to the homepage</a></p>
-			</article>
-		</section>
-	</main>
+	}}>
+	<div slot='hero' class='prose-p:text-neutral-content'>
+		<h1 transition:name='page-title'>404 - Page Not Found</h1>
+		<TextSection>
+			<p>Sorry, we couldn't find that page.</p>
+			<p>Please check the URL and try again.</p>
+			<a href='/' class='btn btn-primary'>Back to Home</a>
+		</TextSection>
+	</div>
 </Layout>
 
 <style lang='scss'>

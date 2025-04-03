@@ -8,6 +8,8 @@ import { SEO } from "astro-seo";
 import type { SEOProps } from "astro-seo";
 import GoogleConsentBanner from "@/components/GoogleConsentBanner.astro";
 import { ClientRouter } from "astro:transitions";
+import monicaHeaderImage from "@/images/monica_magic_kingdom_snow.jpeg";
+import { getImage } from "astro:assets";
 // import ReloadPrompt from "../components/ReloadPrompt.astro";
 
 interface Props {
@@ -15,6 +17,7 @@ interface Props {
 }
 
 const { userSEOProps } = Astro.props;
+const monicaHeader = await getImage({ src: monicaHeaderImage });
 ---
 
 <!doctype html>
@@ -70,7 +73,7 @@ const { userSEOProps } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body class='flex flex-col justify-between h-[100dvh]'>
-		<slot name="under-body-tag" />
+		<slot name='under-body-tag' />
 		<!-- Google Tag Manager (noscript) -->
 		<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-NF3RVNHX' height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
@@ -79,6 +82,12 @@ const { userSEOProps } = Astro.props;
 			<Navbar />
 		</header>
 		<main class='my-auto'>
+			<div class='hero min-h-screen' style={`background-image: url(${monicaHeader.src});`}>
+				<div class='hero-overlay'></div>
+				<div class='hero-content flex-col text-center'>
+					<slot name='hero' />
+				</div>
+			</div>
 			<slot />
 		</main>
 		<Footer />
@@ -108,8 +117,6 @@ const { userSEOProps } = Astro.props;
 				navigation: auto; /* enabled! */
 			}
 		</style>
-		<!-- <VisualEditing enabled={visualEditingEnabled} zIndex={1000} /> -->
-		<!-- <ReloadPrompt /> -->
 		<GoogleConsentBanner />
 	</body>
 </html>
