@@ -11,7 +11,6 @@ export default defineConfig({
 	site: "https://www.magicaladventuresbymonica.com/",
 
 	server: {
-		open: true,
 		port: 3000,
 	},
 
