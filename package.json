@@ -51,7 +51,7 @@
 		"sanity": "^3.82.0",
 		"sanity-plugin-markdown": "^5.1.0",
 		"sanity-plugin-media": "^3.0.2",
-		"sass": "^1.86.2",
+		"sass": "^1.86.3",
 		"schema-dts": "^1.1.5",
 		"styled-components": "^6.1.17",
 		"tailwindcss": "^4.1.2",

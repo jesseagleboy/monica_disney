@@ -12,21 +12,24 @@ const blogPosts = await getCollection("blog");
 		<TextSection>
 			<div class='flex flex-wrap gap-4 justify-center'>
 				{
-					blogPosts.map(post => (
-						<div class='card bg-base-100 w-96 shadow-sm'>
-							<div class='card-body' data-sb-object-id={post.filePath}>
-								<h2 class='card-title' data-sb-field-path='title'>
-									{post.data.title}
-								</h2>
-								<p data-sb-field-path='description'>{post.data.description}</p>
-								<div class='card-actions justify-end'>
-									<button class='btn btn-primary'>
-										<a href={`/blog/${post.id}`}>Read More</a>
-									</button>
+					blogPosts.map(post => {
+						console.log(post.filePath)
+						return (
+							<div class='card bg-base-100 w-96 shadow-sm'>
+								<div class='card-body' data-sb-object-id={post.filePath}>
+									<h2 class='card-title' data-sb-field-path='title'>
+										{post.data.title}
+									</h2>
+									<p data-sb-field-path='description'>{post.data.description}</p>
+									<div class='card-actions justify-end'>
+										<button class='btn btn-primary'>
+											<a href={`/blog/${post.id}`}>Read More</a>
+										</button>
+									</div>
 								</div>
 							</div>
-						</div>
-					))
+						);
+					})
 				}
 			</div>
 		</TextSection>
