@@ -24,6 +24,18 @@
 		}
 	}
 
+	// Make sure visual editors don't see the banner
+	const isEditor = window.location.ancestorOrigins.item(0)?.includes("create.netlify.com");
+	if (isEditor) {
+		setConsent({
+			necessary: false,
+			analytics: false,
+			preferences: false,
+			marketing: false,
+		});
+		hideBanner();
+	}
+
 	if (localStorage.getItem("consentMode") === null) {
 		const btnAcceptAll = document.getElementById("btn-accept-all");
 		if (btnAcceptAll) {
