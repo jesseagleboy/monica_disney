@@ -31,4 +31,5 @@ pnpm-debug.log*
 .netlify
 .stackbit/
 .prettierrc
+.stackbit
 dev-dist/
